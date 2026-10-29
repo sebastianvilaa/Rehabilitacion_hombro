@@ -195,87 +195,10 @@
               <div class="dose">${ex.dose}</div>
               <p><b>Cómo:</b> ${ex.how}</p>
               ${ex.note?`<div class="exercise-note"><b>Nota:</b> ${ex.note}</div>`:""}
-              ${ex.ref?referenceHtml(ex.ref):""}
             </div>
           </article>
         `).join("")}
       </section>`;
-  }
-
-  function referenceHtml(type){
-    return `
-      <details class="exercise-reference">
-        <summary>Ver referencia</summary>
-        <div class="reference-panel">
-          ${referenceSvg(type)}
-          <div class="reference-caption">Referencia rápida del gesto.</div>
-        </div>
-      </details>`;
-  }
-
-  function referenceSvg(type){
-    const commonStart = '<svg viewBox="0 0 320 170" role="img" aria-label="Referencia esquemática del ejercicio" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="none" stroke="currentColor" stroke-width="1.6"/></marker></defs>';
-    const end = '</svg>';
-
-    if(type==="wall-slide") return commonStart + `
-      <line x1="250" y1="20" x2="250" y2="150" class="ref-wall"/>
-      <circle cx="125" cy="48" r="13" class="ref-body"/>
-      <line x1="125" y1="61" x2="125" y2="116" class="ref-body"/>
-      <line x1="125" y1="116" x2="105" y2="148" class="ref-body"/>
-      <line x1="125" y1="116" x2="145" y2="148" class="ref-body"/>
-      <line x1="126" y1="74" x2="155" y2="98" class="ref-ghost"/>
-      <line x1="155" y1="98" x2="190" y2="112" class="ref-ghost"/>
-      <line x1="126" y1="74" x2="164" y2="50" class="ref-body"/>
-      <line x1="164" y1="50" x2="205" y2="32" class="ref-body"/>
-      <path d="M196 106 C215 88 219 59 209 38" class="ref-arrow" marker-end="url(#arrow)"/>
-      <text x="20" y="28" class="ref-label">WALL SLIDE</text>
-    ` + end;
-
-    if(type==="face-pull") return commonStart + `
-      <circle cx="160" cy="48" r="13" class="ref-body"/>
-      <line x1="160" y1="61" x2="160" y2="118" class="ref-body"/>
-      <line x1="160" y1="118" x2="138" y2="150" class="ref-body"/>
-      <line x1="160" y1="118" x2="182" y2="150" class="ref-body"/>
-      <line x1="160" y1="76" x2="118" y2="86" class="ref-body"/>
-      <line x1="118" y1="86" x2="88" y2="72" class="ref-body"/>
-      <line x1="160" y1="76" x2="202" y2="86" class="ref-body"/>
-      <line x1="202" y1="86" x2="232" y2="72" class="ref-body"/>
-      <line x1="18" y1="70" x2="88" y2="72" class="ref-band"/>
-      <line x1="302" y1="70" x2="232" y2="72" class="ref-band"/>
-      <path d="M105 105 C125 93 142 85 153 77" class="ref-arrow" marker-end="url(#arrow)"/>
-      <path d="M215 105 C195 93 178 85 167 77" class="ref-arrow" marker-end="url(#arrow)"/>
-      <text x="20" y="28" class="ref-label">FACE PULL</text>
-    ` + end;
-
-    if(type==="serratus-plus") return commonStart + `
-      <line x1="30" y1="140" x2="292" y2="140" class="ref-floor"/>
-      <circle cx="102" cy="73" r="12" class="ref-body"/>
-      <line x1="113" y1="80" x2="172" y2="94" class="ref-body"/>
-      <line x1="172" y1="94" x2="220" y2="121" class="ref-body"/>
-      <line x1="220" y1="121" x2="260" y2="139" class="ref-body"/>
-      <line x1="147" y1="88" x2="129" y2="138" class="ref-body"/>
-      <line x1="190" y1="104" x2="184" y2="138" class="ref-body"/>
-      <path d="M151 72 C161 61 179 60 190 70" class="ref-ghost"/>
-      <path d="M151 83 C162 72 179 71 190 81" class="ref-body"/>
-      <path d="M170 58 L170 77" class="ref-arrow" marker-end="url(#arrow)"/>
-      <text x="20" y="28" class="ref-label">SERRATO PLUS</text>
-    ` + end;
-
-    if(type==="side-lying-er") return commonStart + `
-      <line x1="28" y1="136" x2="292" y2="136" class="ref-floor"/>
-      <circle cx="88" cy="92" r="12" class="ref-body"/>
-      <line x1="100" y1="96" x2="190" y2="108" class="ref-body"/>
-      <line x1="190" y1="108" x2="235" y2="128" class="ref-body"/>
-      <line x1="135" y1="101" x2="160" y2="124" class="ref-body"/>
-      <line x1="160" y1="124" x2="190" y2="124" class="ref-ghost"/>
-      <line x1="135" y1="101" x2="160" y2="80" class="ref-body"/>
-      <line x1="160" y1="80" x2="188" y2="64" class="ref-body"/>
-      <circle cx="191" cy="62" r="5" class="ref-weight"/>
-      <path d="M190 119 C206 104 207 82 194 67" class="ref-arrow" marker-end="url(#arrow)"/>
-      <text x="20" y="28" class="ref-label">ROTACIÓN EXTERNA</text>
-    ` + end;
-
-    return "";
   }
 
   let observer;
