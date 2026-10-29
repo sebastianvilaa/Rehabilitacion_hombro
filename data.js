@@ -33,7 +33,7 @@ window.REHAB_DATA = {
                 {n:"01",name:"Bastón acostado + peso, llevando brazos arriba",dose:"10 repeticiones",how:"Acostado, llevar ambos brazos por encima de la cabeza con el bastón y la carga ya pautada.",note:"Recorrido amplio y controlado. No aumentar peso por tu cuenta."},
                 {n:"02",name:"Espaldar + banda liviana",dose:"8–10 repeticiones",how:"Subir progresivamente los brazos en el espaldar. La banda agrega algo de trabajo sin perder movilidad."},
                 {n:"03",name:"Pelota contra la pared subiendo",dose:"8–10 repeticiones",how:"Hacer rodar la pelota por la pared hacia arriba y acompañar el recorrido hasta el máximo cómodo."},
-                {n:"04",name:"Wall slide frontal",dose:"8–10 repeticiones",how:"Deslizar los brazos recto hacia arriba y hacia abajo sobre la pared.",note:"Va al final porque te demanda bastante. No usarlo como primer ejercicio en frío."}
+                {n:"04",name:"Wall slide frontal",dose:"8–10 repeticiones",how:"Deslizar los brazos recto hacia arriba y hacia abajo sobre la pared.",note:"Va al final porque te demanda bastante. No usarlo como primer ejercicio en frío.",ref:"wall-slide"}
               ]
             },
             {
@@ -41,9 +41,9 @@ window.REHAB_DATA = {
               subtitle: "Movilidad, control y liberar la mecánica del hombro.",
               exercises: [
                 {n:"01",name:"Rotación externa en 90/90",dose:"8–10 repeticiones",how:"Brazo a la altura del hombro y codo flexionado. Trabajar la rotación externa con resistencia mínima o asistida.",note:"En TO el objetivo es rango y control, no cansarte."},
-                {n:"02",name:"Plus de serrato en cuadrupedia",dose:"10–12 repeticiones",how:"Manos apoyadas, codos estirados. Empujar el piso y “separar” las escápulas sin doblar los brazos."},
-                {n:"03",name:"Face pull con banda liviana",dose:"10–12 repeticiones",how:"Banda a la altura de la cara. Llevar los codos atrás y afuera, controlando la escápula.",note:"Control de espalda y escápula; no hacerlo pesado como ejercicio de fuerza."},
-                {n:"04",name:"Rotación externa acostado de costado",dose:"10 repeticiones",how:"Acostado de costado, codo pegado al cuerpo y abrir el antebrazo hacia afuera con mancuerna.",note:"En TO, menos carga que los 4 kg de kinesio: priorizar recorrido y control."}
+                {n:"02",name:"Plus de serrato en cuadrupedia",dose:"10–12 repeticiones",how:"Manos apoyadas, codos estirados. Empujar el piso y “separar” las escápulas sin doblar los brazos.",ref:"serratus-plus"},
+                {n:"03",name:"Face pull con banda liviana",dose:"10–12 repeticiones",how:"Banda a la altura de la cara. Llevar los codos atrás y afuera, controlando la escápula.",note:"Control de espalda y escápula; no hacerlo pesado como ejercicio de fuerza.",ref:"face-pull"},
+                {n:"04",name:"Rotación externa acostado de costado",dose:"10 repeticiones",how:"Acostado de costado, codo pegado al cuerpo y abrir el antebrazo hacia afuera con mancuerna.",note:"En TO, menos carga que los 4 kg de kinesio: priorizar recorrido y control.",ref:"side-lying-er"}
               ]
             },
             {
@@ -94,7 +94,7 @@ window.REHAB_DATA = {
                 {n:"01",name:"Rotación externa con banda",dose:"3 × 12",how:"Brazo aproximadamente a 45° / cerca de la altura del hombro. Abrir hacia afuera con control."},
                 {n:"02",name:"Rotación interna con banda",dose:"3 × 12",how:"Misma posición general, llevando el antebrazo hacia adentro con control."},
                 {n:"03",name:"Full can",dose:"3 × 12",how:"Elevar el brazo en plano escapular con pulgar hacia arriba, con carga pautada."},
-                {n:"04",name:"RE acostado de costado",dose:"3 × 12",how:"Codo pegado al cuerpo, abrir hacia afuera y bajar lento.",note:"Actualmente lo hacés con 4 kg en kinesio."}
+                {n:"04",name:"RE acostado de costado",dose:"3 × 12",how:"Codo pegado al cuerpo, abrir hacia afuera y bajar lento.",note:"Actualmente lo hacés con 4 kg en kinesio.",ref:"side-lying-er"}
               ]
             },
             {
@@ -109,10 +109,10 @@ window.REHAB_DATA = {
             {
               id:"k-c4",label:"Bloque 04",title:"Control escapular",subtitle:"Serrato, escápula y cadena posterior.",
               exercises:[
-                {n:"01",name:"Plus de serrato en cuadrupedia",dose:"3 × 12",how:"Con codos estirados, empujar el piso separando las escápulas."},
+                {n:"01",name:"Plus de serrato en cuadrupedia",dose:"3 × 12",how:"Con codos estirados, empujar el piso separando las escápulas.",ref:"serratus-plus"},
                 {n:"02",name:"Círculos con pelota en pared",dose:"3 × 20–30 s",how:"Pelota contra pared, círculos controlados.",note:"En kinesio puede llevar peso en muñeca y te resulta demandante."},
-                {n:"03",name:"Wall slide frontal",dose:"3 × 12",how:"Subir y bajar recto sobre la pared, sin diagonal."},
-                {n:"04",name:"Face pull con banda",dose:"3 × 12",how:"Tirar hacia la cara, codos atrás y afuera, controlando la escápula."}
+                {n:"03",name:"Wall slide frontal",dose:"3 × 12",how:"Subir y bajar recto sobre la pared, sin diagonal.",ref:"wall-slide"},
+                {n:"04",name:"Face pull con banda",dose:"3 × 12",how:"Tirar hacia la cara, codos atrás y afuera, controlando la escápula.",ref:"face-pull"}
               ]
             }
           ],
