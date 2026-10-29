@@ -11,6 +11,7 @@
   const input = document.getElementById("pin-input");
   const error = document.getElementById("pin-error");
   const lockButton = document.getElementById("lock-button");
+  const refreshButton = document.getElementById("refresh-button");
 
   async function sha256(text){
     const data = new TextEncoder().encode(text);
@@ -55,6 +56,26 @@
   });
 
   lockButton.addEventListener("click", relock);
+
+  refreshButton.addEventListener("click", async () => {
+    const original = refreshButton.textContent;
+    refreshButton.disabled = true;
+    refreshButton.textContent = "…";
+    try {
+      await Promise.all(
+        ["./", "styles.css", "data.js", "app.js"].map(resource =>
+          fetch(resource + (resource.includes("?") ? "&" : "?") + "refresh=" + Date.now(), {
+            cache: "reload"
+          })
+        )
+      );
+    } catch (e) {
+      // Si falla alguna petición, igualmente recargamos para intentar tomar la versión más nueva.
+    } finally {
+      refreshButton.textContent = original;
+      location.reload();
+    }
+  });
 
   document.addEventListener("click", e => {
     const home = e.target.closest("[data-action='home']");
