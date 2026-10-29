@@ -1,7 +1,7 @@
 (() => {
   const DATA = window.REHAB_DATA;
   const SURGERY = new Date(DATA.surgeryDate + "T12:00:00");
-  const PIN_HASH = "__PIN_HASH_PENDING__";
+  const PIN_HASH = "e3e54cd90759e644036cf64ac6b088e7ffb743a0c557712b483ccf880965e1bf";
   const SESSION_KEY = "rehab_unlocked_v1";
 
   const app = document.getElementById("app");
