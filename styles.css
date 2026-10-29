@@ -70,6 +70,30 @@ button{cursor:pointer}
   color:var(--to);
   font-weight:900;
 }
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.icon-button{
+  width:32px;
+  height:32px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:rgba(255,255,255,.025);
+  color:var(--soft);
+  font-size:18px;
+  line-height:1;
+  padding:0;
+}
+.icon-button:active{
+  transform:scale(.96);
+}
+.icon-button:disabled{
+  opacity:.55;
+}
 .ghost-button{
   border:0;
   background:none;
