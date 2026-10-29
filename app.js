@@ -161,7 +161,7 @@
         </div>
 
         <nav class="sticky-nav" id="section-nav" style="--accent:var(--${accent})">
-          ${data.circuits.map((c,i)=>`<button class="${i===0?"active":""}" data-scroll="${c.id}">${c.title}</button>`).join("")}
+          ${data.circuits.map((c,i)=>`<button class="${i===0?"active":""}" data-scroll="${c.id}"><span class="nav-num">${String(i+1).padStart(2,"0")}</span><span>${c.title}</span></button>`).join("")}
         </nav>
 
         <div style="--accent:var(--${accent})">
@@ -286,6 +286,8 @@
       const visible = entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
       if(!visible) return;
       buttons.forEach(b=>b.classList.toggle("active",b.dataset.scroll===visible.target.id));
+      const activeBtn = buttons.find(b=>b.classList.contains("active"));
+      activeBtn?.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
     },{rootMargin:"-115px 0px -58% 0px",threshold:[0,.2,.5,.8]});
     ids.forEach(id=>{
       const el=document.getElementById(id);
