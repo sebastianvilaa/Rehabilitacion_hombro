@@ -279,33 +279,53 @@ button{cursor:pointer}
   background:color-mix(in srgb,var(--accent) 8%,transparent);
 }
 .sticky-nav{
+  position:-webkit-sticky;
   position:sticky;
   top:58px;
-  z-index:40;
+  z-index:45;
   display:flex;
-  gap:18px;
-  overflow:auto;
+  gap:20px;
+  width:calc(100% + 32px);
+  max-width:none;
+  overflow-x:auto;
+  overflow-y:hidden;
   white-space:nowrap;
   margin:0 -16px 22px;
-  padding:9px 16px;
-  background:rgba(7,17,31,.9);
+  padding:10px 16px;
+  background:rgba(7,17,31,.94);
   border-top:1px solid rgba(255,255,255,.025);
   border-bottom:1px solid var(--line);
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
   scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;
+  touch-action:pan-x;
+  scroll-snap-type:x proximity;
 }
 .sticky-nav::-webkit-scrollbar{display:none}
 .sticky-nav button{
   position:relative;
   flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:7px;
   border:0;
   padding:6px 0;
   background:none;
   color:var(--muted);
   font-size:12px;
   font-weight:800;
+  scroll-snap-align:center;
 }
+.nav-num{
+  color:inherit;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.02em;
+  opacity:.72;
+}
+.sticky-nav button.active .nav-num{opacity:1}
 .sticky-nav button.active{color:var(--accent)}
 .sticky-nav button.active::after{
   content:"";
