@@ -103,7 +103,7 @@ window.REHAB_DATA = {
                 {n:"01",name:"Remo",dose:"3 × 12",how:"Tirar del agarre hacia el cuerpo, llevando los codos hacia las costillas."},
                 {n:"02",name:"Lat pulldown con banda",dose:"3 × 12",how:"Banda desde arriba, llevar hacia abajo con recorrido controlado."},
                 {n:"03",name:"Curl de bíceps",dose:"3 × 12",how:"Flexión de codo normal con carga pautada, sin movimientos bruscos."},
-                {n:"04",name:"Correíta overhead",dose:"Según sesión",how:"En la práctica reemplaza al press formal: usarla para movilidad por arriba de la cabeza.",note:"El número exacto de repeticiones depende de la sesión."}
+                {n:"04",name:"Espaldar + banda amarilla",dose:"3 × 12 aprox.",how:"Subir progresivamente en el espaldar, yendo de a un nivel para arriba, con una banda amarilla que agrega una resistencia leve.",note:"Este fue el ejercicio que realmente terminó quedando en la rutina de esta semana; la correíta no se usó."}
               ]
             },
             {
