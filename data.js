@@ -176,6 +176,7 @@ window.REHAB_DATA = {
             "Todavía no gesto de pádel, lanzamientos, saque, remate ni pliometría.",
             "La rotación externa progresa a 60° y luego hacia 90/90."
           ]
+        }
       }
     }
   }
