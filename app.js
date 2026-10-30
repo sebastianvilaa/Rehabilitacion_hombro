@@ -4,6 +4,7 @@
   const PIN_HASH = "e3e54cd90759e644036cf64ac6b088e7ffb743a0c557712b483ccf880965e1bf";
   const SESSION_KEY = "rehab_unlocked_v1";
   const NOTES_KEY = "rehab_session_notes_v1";
+  const EXERCISE_NOTES_KEY = "rehab_exercise_notes_v1";
   const IS_STANDALONE = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
   let firstRender = true;
 
@@ -96,10 +97,36 @@
     if(current){
       location.hash = "#" + current.dataset.goCurrent;
     }
+    const mic = e.target.closest("[data-exercise-mic]");
+    if(mic){
+      const [modeId,week,ci,ei] = mic.dataset.exerciseMic.split("|");
+      openExerciseNote(modeId,Number(week),Number(ci),Number(ei),true);
+      return;
+    }
+
+    const closeNote = e.target.closest("[data-note-close]");
+    if(closeNote){
+      const key = closeNote.dataset.noteClose;
+      document.querySelector('[data-note-panel="'+key+'"]')?.classList.add("hidden");
+      return;
+    }
+
     const nav = e.target.closest("[data-scroll]");
     if(nav){
       document.getElementById(nav.dataset.scroll)?.scrollIntoView({behavior:"smooth",block:"start"});
     }
+  });
+
+  document.addEventListener("input", e => {
+    const area = e.target.closest("[data-note-area]");
+    if(!area) return;
+    const key = area.dataset.noteArea;
+    const [modeId,week,ci,ei] = key.split("|");
+    saveExerciseNote(modeId,Number(week),Number(ci),Number(ei),area.value);
+    const status = document.querySelector('[data-note-status="'+key+'"]');
+    if(status) status.textContent = area.value.trim() ? "Guardado" : "Vacío";
+    const mic = document.querySelector('[data-exercise-mic="'+key+'"]');
+    if(mic) mic.classList.toggle("has-note",!!area.value.trim());
   });
 
   function progress(){
@@ -205,7 +232,7 @@
         </nav>
 
         <div style="--accent:var(--${accent})">
-          ${data.circuits.map(c=>circuitHtml(c)).join("")}
+          ${data.circuits.map((c,ci)=>circuitHtml(c,modeId,weekNum,ci)).join("")}
           <section class="rules">
             <div class="eyebrow">Reglas de esta etapa</div>
             <h3>Control antes que esfuerzo.</h3>
@@ -217,6 +244,166 @@
       </div>`;
 
     setupScrollSpy(data.circuits.map(c=>c.id));
+  }
+
+  function getExerciseNotes(){
+    try {
+      return JSON.parse(localStorage.getItem(EXERCISE_NOTES_KEY) || "{}");
+    } catch(e) {
+      return {};
+    }
+  }
+
+  function saveExerciseNotes(notes){
+    localStorage.setItem(EXERCISE_NOTES_KEY, JSON.stringify(notes));
+  }
+
+  function exerciseNoteKey(modeId, week, circuitIndex, exerciseIndex){
+    return [modeId, week, circuitIndex, exerciseIndex].join("|");
+  }
+
+  function exerciseNoteMeta(modeId, week, circuitIndex, exerciseIndex){
+    const mode = DATA.modes[modeId];
+    const weekData = mode?.weeks?.[String(week)];
+    const circuit = weekData?.circuits?.[circuitIndex];
+    const exercise = circuit?.exercises?.[exerciseIndex];
+    if(!mode || !weekData || !circuit || !exercise) return null;
+    return {mode,weekData,circuit,exercise};
+  }
+
+  function saveExerciseNote(modeId, week, circuitIndex, exerciseIndex, text){
+    const notes = getExerciseNotes();
+    const key = exerciseNoteKey(modeId,week,circuitIndex,exerciseIndex);
+    const clean = text.trim();
+    if(clean){
+      notes[key] = {
+        text: clean,
+        updatedAt: new Date().toISOString()
+      };
+    } else {
+      delete notes[key];
+    }
+    saveExerciseNotes(notes);
+  }
+
+  function openExerciseNote(modeId, week, circuitIndex, exerciseIndex, startListening=false){
+    const key = exerciseNoteKey(modeId,week,circuitIndex,exerciseIndex);
+    const panel = document.querySelector('[data-note-panel="'+key+'"]');
+    const area = document.querySelector('[data-note-area="'+key+'"]');
+    const status = document.querySelector('[data-note-status="'+key+'"]');
+    if(!panel || !area) return;
+
+    panel.classList.remove("hidden");
+    area.focus();
+
+    if(startListening){
+      startSpeechForExercise(modeId,week,circuitIndex,exerciseIndex,area,status);
+    }
+  }
+
+  function startSpeechForExercise(modeId, week, circuitIndex, exerciseIndex, area, status){
+    const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if(!Recognition){
+      if(status) status.textContent = "Usá el micrófono del teclado para dictar.";
+      area.focus();
+      return;
+    }
+
+    const recognition = new Recognition();
+    recognition.lang = "es-AR";
+    recognition.interimResults = true;
+    recognition.continuous = false;
+
+    const original = area.value.trim();
+    let finalText = "";
+
+    if(status) status.textContent = "Escuchando…";
+
+    recognition.onresult = event => {
+      let interim = "";
+      finalText = "";
+      for(let i=event.resultIndex;i<event.results.length;i++){
+        const piece = event.results[i][0].transcript;
+        if(event.results[i].isFinal) finalText += piece;
+        else interim += piece;
+      }
+      const joined = [original, finalText || interim].filter(Boolean).join(original ? " " : "");
+      area.value = joined;
+    };
+
+    recognition.onerror = () => {
+      if(status) status.textContent = "No pude escuchar. Podés usar el dictado del teclado.";
+      area.focus();
+    };
+
+    recognition.onend = () => {
+      const text = area.value.trim();
+      saveExerciseNote(modeId,week,circuitIndex,exerciseIndex,text);
+      if(status) status.textContent = text ? "Guardado" : "Vacío";
+    };
+
+    try {
+      recognition.start();
+    } catch(e) {
+      if(status) status.textContent = "Usá el micrófono del teclado para dictar.";
+      area.focus();
+    }
+  }
+
+  function buildExerciseNotesSummary(){
+    const notes = getExerciseNotes();
+    const rows = [];
+
+    Object.entries(notes).forEach(([key,value]) => {
+      const [modeId,week,circuitIndex,exerciseIndex] = key.split("|");
+      const meta = exerciseNoteMeta(modeId,Number(week),Number(circuitIndex),Number(exerciseIndex));
+      if(!meta || !value?.text?.trim()) return;
+      rows.push({
+        modeId,
+        modeName: meta.mode.name,
+        week: Number(week),
+        circuitIndex: Number(circuitIndex),
+        circuit: meta.circuit.title,
+        exerciseIndex: Number(exerciseIndex),
+        exercise: meta.exercise.name,
+        text: value.text.trim()
+      });
+    });
+
+    rows.sort((a,b) =>
+      a.week-b.week ||
+      a.modeName.localeCompare(b.modeName) ||
+      a.circuitIndex-b.circuitIndex ||
+      a.exerciseIndex-b.exerciseIndex
+    );
+    return rows;
+  }
+
+  function buildChatGPTExport(){
+    const general = (localStorage.getItem(NOTES_KEY) || "").trim();
+    const rows = buildExerciseNotesSummary();
+    const parts = [
+      "Te paso mis notas tomadas durante las sesiones de rehabilitación. Usalas para corregir/actualizar la rutina real en la app, diferenciando lo que efectivamente hice de lo que decía el plan."
+    ];
+
+    if(rows.length){
+      let currentGroup = "";
+      rows.forEach(r => {
+        const group = r.modeName + " · Semana " + r.week;
+        if(group !== currentGroup){
+          parts.push("\n" + group.toUpperCase());
+          currentGroup = group;
+        }
+        parts.push("- " + r.circuit + " → " + r.exercise + ": " + r.text);
+      });
+    }
+
+    if(general){
+      parts.push("\nNOTAS GENERALES\n" + general);
+    }
+
+    return parts.join("\n");
   }
 
   function notesView(){
@@ -242,15 +429,34 @@
 
         <div class="notes-actions">
           <button class="secondary-action" id="notes-date">+ Fecha y hora</button>
-          <button class="primary-action" id="notes-copy">Copiar todo</button>
+          <button class="primary-action" id="notes-copy">Copiar notas generales</button>
         </div>
 
-        <button class="notes-clear" id="notes-clear">Vaciar notas</button>
+        <section class="exercise-notes-summary">
+          <div class="section-head">
+            <div><h2>Notas por ejercicio</h2><p>Ordenadas automáticamente según la rutina.</p></div>
+          </div>
+          <div id="exercise-notes-list"></div>
+          <button class="chatgpt-export" id="notes-export">Copiar para ChatGPT</button>
+        </section>
+
+        <button class="notes-clear" id="notes-clear">Vaciar notas generales</button>
       </div>`;
 
     const area = document.getElementById("session-notes");
     const status = document.getElementById("notes-status");
     area.value = saved;
+
+    const exerciseList = document.getElementById("exercise-notes-list");
+    const exerciseRows = buildExerciseNotesSummary();
+    exerciseList.innerHTML = exerciseRows.length
+      ? exerciseRows.map(r => `
+          <article class="exercise-note-summary-item">
+            <div class="exercise-note-summary-meta">${r.modeName} · Semana ${r.week}</div>
+            <strong>${r.exercise}</strong>
+            <span>${r.text}</span>
+          </article>`).join("")
+      : '<div class="empty-exercise-notes">Todavía no guardaste notas asociadas a ejercicios.</div>';
 
     let saveTimer;
     area.addEventListener("input", () => {
@@ -289,6 +495,23 @@
       setTimeout(() => button.textContent = "Copiar todo", 1400);
     });
 
+    document.getElementById("notes-export").addEventListener("click", async () => {
+      const button = document.getElementById("notes-export");
+      const text = buildChatGPTExport();
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch(e) {
+        const temp = document.createElement("textarea");
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand("copy");
+        temp.remove();
+      }
+      button.textContent = "Copiado para ChatGPT ✓";
+      setTimeout(() => button.textContent = "Copiar para ChatGPT", 1600);
+    });
+
     document.getElementById("notes-clear").addEventListener("click", () => {
       if(!area.value.trim() || confirm("¿Vaciar todas las notas guardadas en este dispositivo?")){
         area.value = "";
@@ -298,7 +521,8 @@
     });
   }
 
-  function circuitHtml(c){
+  function circuitHtml(c,modeId,weekNum,circuitIndex){
+    const notes = getExerciseNotes();
     return `
       <section class="circuit" id="${c.id}">
         <div class="circuit-title">
@@ -306,17 +530,32 @@
           <h2>${c.title}</h2>
           <p>${c.subtitle||""}</p>
         </div>
-        ${c.exercises.map(ex=>`
+        ${c.exercises.map((ex,ei)=>{
+          const noteKey = exerciseNoteKey(modeId,weekNum,circuitIndex,ei);
+          const savedNote = notes[noteKey]?.text || "";
+          return `
           <article class="exercise">
             <div class="exercise-num">${ex.n}</div>
             <div>
-              <h3>${ex.name}</h3>
+              <div class="exercise-title-row">
+                <h3>${ex.name}</h3>
+                <button class="exercise-mic ${savedNote?"has-note":""}" type="button"
+                  aria-label="Dictar nota sobre ${ex.name}"
+                  data-exercise-mic="${noteKey}">⌁</button>
+              </div>
               <div class="dose">${ex.dose}</div>
               <p><b>Cómo:</b> ${ex.how}</p>
               ${ex.note?`<div class="exercise-note"><b>Nota:</b> ${ex.note}</div>`:""}
+              <div class="exercise-note-panel ${savedNote?"":"hidden"}" data-note-panel="${noteKey}">
+                <textarea class="exercise-note-area" data-note-area="${noteKey}" placeholder="Nota rápida sobre este ejercicio…">${savedNote}</textarea>
+                <div class="exercise-note-controls">
+                  <span data-note-status="${noteKey}">${savedNote?"Guardado":"Listo para dictar"}</span>
+                  <button type="button" data-note-close="${noteKey}">Cerrar</button>
+                </div>
+              </div>
             </div>
-          </article>
-        `).join("")}
+          </article>`;
+        }).join("")}
       </section>`;
   }
 
