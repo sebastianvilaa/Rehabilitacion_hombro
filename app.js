@@ -161,9 +161,21 @@
     const mode = DATA.modes[modeId];
     if(!mode){ homeView(); return; }
     const weeks = Object.keys(mode.weeks).map(Number).sort((a,b)=>b-a);
-    const weekNum = requestedWeek && mode.weeks[String(requestedWeek)] ? Number(requestedWeek) : weeks[0];
+    const now = new Date();
+    const todayKey = [now.getFullYear(),String(now.getMonth()+1).padStart(2,"0"),String(now.getDate()).padStart(2,"0")].join("-");
+    const startedWeeks = weeks.filter(w => {
+      const start = mode.weeks[String(w)].startDate;
+      return !start || start <= todayKey;
+    });
+    const defaultWeekNum = startedWeeks.length ? Math.max(...startedWeeks) : weeks[weeks.length-1];
+    const weekNum = requestedWeek && mode.weeks[String(requestedWeek)] ? Number(requestedWeek) : defaultWeekNum;
     const data = mode.weeks[String(weekNum)];
     const accent = mode.accent;
+    const statusLabel = data.startDate && data.startDate > todayKey
+      ? "PRÓXIMA RUTINA"
+      : weekNum === defaultWeekNum
+        ? "RUTINA VIGENTE"
+        : "HISTÓRICO";
 
     view.innerHTML = `
       <div class="view">
@@ -172,7 +184,7 @@
           <h1>${data.title}<br>Semana ${data.week}</h1>
           <p>${data.intro}</p>
           <div class="mode-meta">
-            <span class="current">${data.status === "vigente" ? "RUTINA VIGENTE" : "HISTÓRICO"}</span>
+            <span class="current">${statusLabel}</span>
             <span class="progress-small">${data.dateLabel}</span>
           </div>
         </section>
