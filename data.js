@@ -6,6 +6,7 @@ window.REHAB_DATA = {
       id: "to",
       short: "TO",
       name: "Terapia ocupacional",
+      currentWeek: 11,
       accent: "to",
       summary: "Movilidad, rango y control. Complementa kinesio sin duplicar la carga.",
       weeks: {
@@ -69,6 +70,7 @@ window.REHAB_DATA = {
       id: "kine",
       short: "Kine",
       name: "Kinesiología",
+      currentWeek: 12,
       accent: "kine",
       summary: "Fuerza progresiva, manguito, tracción, bíceps y control escapular.",
       weeks: {
