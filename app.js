@@ -137,7 +137,7 @@
               <span class="mode-arrow">→</span>
             </button>
             <button class="mode-card kine" data-mode="kine">
-              <span class="mode-kicker">Naranja · fuerza</span>
+              <span class="mode-kicker">Lima · fuerza</span>
               <h3>Kinesiología</h3>
               <p>${DATA.modes.kine.summary}</p>
               <span class="mode-arrow">→</span>
