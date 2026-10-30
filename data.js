@@ -1,6 +1,33 @@
 window.REHAB_DATA = {
   surgeryDate: "2026-08-14",
   title: "Rehabilitación",
+  measurements: [
+    {
+      date: "2026-10-30",
+      label: "Medición de fuerza de rotadores",
+      measuredBy: "Wenchi",
+      operated: {
+        side: "Hombro derecho operado",
+        externalRotation: 70.5,
+        internalRotation: 98
+      },
+      healthy: {
+        side: "Hombro izquierdo sano",
+        externalRotation: 98,
+        internalRotation: 143
+      },
+      analysis: {
+        externalRotationSymmetry: 71.9,
+        internalRotationSymmetry: 68.5,
+        operatedErIrRatio: 71.9,
+        healthyErIrRatio: 68.5,
+        externalRotationDifference: 28.1,
+        internalRotationDifference: 31.5,
+        targetErIrMin: 66,
+        targetErIrMax: 75
+      }
+    }
+  ],
   modes: {
     to: {
       id: "to",
@@ -140,7 +167,7 @@ window.REHAB_DATA = {
                 {n:"01",name:"Movilidad activa en todos los planos",dose:"2 × 10",how:"Flexión, abducción y rotaciones en rango completo, como entrada en calor."},
                 {n:"02",name:"RE / RI con banda en abducción 60°",dose:"2 × 12",how:"Rotación externa e interna con banda, llevando la abducción a 60° y manteniendo una activación suave.",note:"Ejecución real en sesión: banda amarilla, con resistencia muy suave."},
                 {n:"03",name:"Movilidad torácica",dose:"2 × 10",how:"Extensión y rotación torácica, sobre rulo o sentado, acompañando el gesto."},
-                {n:"04",name:"Activación de manguito + serrato",dose:"2 × 15",how:"Banda liviana para RE/RI y punch de serrato como preparación.",note:"Este componente de serrato aparece explícitamente en el nuevo plan; confirmar mañana cómo lo quiere ejecutar Wenceslao."}
+                {n:"04",name:"Activación de manguito + serrato",dose:"2 × 15",how:"Banda liviana para RE/RI y punch de serrato como preparación.",note:"Este componente de serrato aparece explícitamente en el nuevo plan; confirmar mañana cómo lo quiere ejecutar Wenchi."}
               ]
             },
             {
