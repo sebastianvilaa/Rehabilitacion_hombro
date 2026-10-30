@@ -73,6 +73,7 @@ window.REHAB_DATA = {
       summary: "Fuerza progresiva, manguito, tracción, bíceps y control escapular.",
       weeks: {
         "11": {
+          startDate: "2026-10-26",
           week: 11,
           status: "vigente",
           title: "Fuerza progresiva",
@@ -122,7 +123,59 @@ window.REHAB_DATA = {
             "No forzar la rotación externa en abducción ni hacer estiramientos bruscos.",
             "La progresión de carga la marca kinesio según respuesta y control."
           ]
-        }
+        },
+        "12": {
+          week: 12,
+          startDate: "2026-11-02",
+          status: "proxima",
+          title: "Fuerza pesada",
+          dateLabel: "Desde 02/11/2026",
+          intro: "Nueva fase de fuerza más pesada y controlada. Suben el ángulo de trabajo, la carga y la demanda escapular, todavía sin gesto de pádel ni pliometría.",
+          circuits: [
+            {
+              id:"k12-c1",label:"Bloque 01",title:"Activación y movilidad",subtitle:"Entrada en calor y activación previa a la carga. RE progresando a 60°.",
+              exercises:[
+                {n:"01",name:"Movilidad activa en todos los planos",dose:"2 × 10",how:"Flexión, abducción y rotaciones en rango completo, como entrada en calor."},
+                {n:"02",name:"RE / RI con banda en abducción 60°",dose:"2 × 12",how:"Rotación externa e interna con banda, llevando la abducción a 60° y manteniendo una activación suave.",note:"Probablemente es la misma mecánica que venías haciendo, ahora a 60°. Confirmar mañana la ejecución exacta."},
+                {n:"03",name:"Movilidad torácica",dose:"2 × 10",how:"Extensión y rotación torácica, sobre rulo o sentado, acompañando el gesto."},
+                {n:"04",name:"Activación de manguito + serrato",dose:"2 × 15",how:"Banda liviana para RE/RI y punch de serrato como preparación.",note:"Este componente de serrato aparece explícitamente en el nuevo plan; confirmar mañana cómo lo quiere ejecutar Wenceslao."}
+              ]
+            },
+            {
+              id:"k12-c2",label:"Bloque 02",title:"Fuerza de rotadores y manguito",subtitle:"Más carga, controlando especialmente la vuelta excéntrica.",
+              exercises:[
+                {n:"01",name:"RE en abducción 60°",dose:"3 × 10",how:"Con banda o polea, rotación externa a 60° de abducción. Subir carga respecto a la fase anterior y controlar la vuelta."},
+                {n:"02",name:"RI en abducción 60°",dose:"3 × 10",how:"Misma posición a 60°, rotación interna con más carga y vuelta controlada."},
+                {n:"03",name:"Full can con mancuerna",dose:"3 × 10",how:"Brazos en plano escapular, pulgar arriba y recorrido completo con control.",note:"Venías usando 2,5 kg. La nueva carga queda a definir en sesión; no fijamos todavía 3, 4 o 5 kg."},
+                {n:"04",name:"RE acostado de costado",dose:"3 × 12",how:"Decúbito lateral, codo pegado al cuerpo, abrir hacia afuera con mancuerna y bajar lento.",note:"Venías usando 4 kg. El plan pide progresar carga, pero el valor nuevo queda a definir."}
+              ]
+            },
+            {
+              id:"k12-c3",label:"Bloque 03",title:"Fuerza: empuje y tracción",subtitle:"Cargas altas y controladas, con técnica estricta.",
+              exercises:[
+                {n:"01",name:"Remo con mancuerna pesado",dose:"4 × 8",how:"Traccionar llevando el codo atrás sin perder el control de la escápula.",note:"Es un cambio respecto a la banda que venías usando. Técnica y carga exactas a confirmar mañana."},
+                {n:"02",name:"Jalón dorsal con banda o polea",dose:"4 × 8",how:"Tracción vertical controlada con más resistencia.",note:"Es el dorsal que ya venías haciendo con banda negra; la progresión exacta de resistencia queda a definir."},
+                {n:"03",name:"Press de hombro con mancuerna",dose:"4 × 8",how:"Press de hombro con recorrido completo si el control lo permite y sin dolor.",note:"Ejercicio nuevo. Arranque y carga a definir en sesión."},
+                {n:"04",name:"Curl de bíceps",dose:"3 × 10",how:"Flexo-extensión de codo controlada, en la variante que venís haciendo tipo martillo.",note:"Venías usando 7,5 kg. El plan indica subir carga, pero no fijamos todavía 10 kg."}
+              ]
+            },
+            {
+              id:"k12-c4",label:"Bloque 04",title:"Estabilidad escapular",subtitle:"Más demanda de serrato, escápula y manguito posterior.",
+              exercises:[
+                {n:"01",name:"Shoulder taps en plancha",dose:"3 × 10 por lado",how:"En plancha desde rodillas o pies, tocar el hombro opuesto alternando sin dejar que roten las caderas.",note:"Nuevo. Busca estabilidad, serrato y control escapular."},
+                {n:"02",name:"Face pull con banda o polea",dose:"3 × 12",how:"Traccionar hacia la cara y terminar con rotación externa, manteniendo el control de la escápula.",note:"Venís haciéndolo con banda negra. El nuevo plan pide más carga, a definir según control."},
+                {n:"03",name:"Wall slide con banda",dose:"3 × 12",how:"Deslizar sobre la pared manteniendo rotación externa y tensión constante en la banda.",note:"Venís usando banda verde; la azul es más fuerte, pero no cambiamos resistencia hasta probarlo."},
+                {n:"04",name:"Y-T-W en banco, boca abajo",dose:"3 × 8 por posición",how:"Boca abajo, elevar los brazos formando sucesivamente una Y, una T y una W, activando trapecio medio e inferior.",note:"Ejercicio nuevo, con carga liviana. Confirmar mañana la ejecución exacta."}
+              ]
+            }
+          ],
+          rules:[
+            "Dolor siempre por debajo de 4/10; por encima de 5/10 durante el ejercicio, frenar.",
+            "Si el dolor aumenta al día siguiente, bajar la carga en la próxima sesión.",
+            "Fuerza pesada sí, pero sin fallo muscular ni cargas máximas sin control técnico.",
+            "Todavía no gesto de pádel, lanzamientos, saque, remate ni pliometría.",
+            "La rotación externa progresa a 60° y luego hacia 90/90."
+          ]
       }
     }
   }
