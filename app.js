@@ -3,6 +3,9 @@
   const SURGERY = new Date(DATA.surgeryDate + "T12:00:00");
   const PIN_HASH = "e3e54cd90759e644036cf64ac6b088e7ffb743a0c557712b483ccf880965e1bf";
   const SESSION_KEY = "rehab_unlocked_v1";
+  const NOTES_KEY = "rehab_session_notes_v1";
+  const IS_STANDALONE = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  let firstRender = true;
 
   const app = document.getElementById("app");
   const lock = document.getElementById("lock");
@@ -12,6 +15,7 @@
   const error = document.getElementById("pin-error");
   const lockButton = document.getElementById("lock-button");
   const refreshButton = document.getElementById("refresh-button");
+  const notesButton = document.getElementById("notes-button");
 
   async function sha256(text){
     const data = new TextEncoder().encode(text);
@@ -56,6 +60,7 @@
   });
 
   lockButton.addEventListener("click", relock);
+  notesButton.addEventListener("click", () => { location.hash = "#notes"; });
 
   refreshButton.addEventListener("click", async () => {
     const original = refreshButton.textContent;
@@ -86,6 +91,10 @@
     if(week){
       const modeId = week.dataset.modeId;
       location.hash="#"+modeId+"/w"+week.dataset.week;
+    }
+    const current = e.target.closest("[data-go-current]");
+    if(current){
+      location.hash = "#" + current.dataset.goCurrent;
     }
     const nav = e.target.closest("[data-scroll]");
     if(nav){
@@ -161,21 +170,13 @@
     const mode = DATA.modes[modeId];
     if(!mode){ homeView(); return; }
     const weeks = Object.keys(mode.weeks).map(Number).sort((a,b)=>b-a);
-    const now = new Date();
-    const todayKey = [now.getFullYear(),String(now.getMonth()+1).padStart(2,"0"),String(now.getDate()).padStart(2,"0")].join("-");
-    const startedWeeks = weeks.filter(w => {
-      const start = mode.weeks[String(w)].startDate;
-      return !start || start <= todayKey;
-    });
-    const defaultWeekNum = startedWeeks.length ? Math.max(...startedWeeks) : weeks[weeks.length-1];
+    const defaultWeekNum = mode.currentWeek && mode.weeks[String(mode.currentWeek)]
+      ? Number(mode.currentWeek)
+      : weeks[0];
     const weekNum = requestedWeek && mode.weeks[String(requestedWeek)] ? Number(requestedWeek) : defaultWeekNum;
     const data = mode.weeks[String(weekNum)];
     const accent = mode.accent;
-    const statusLabel = data.startDate && data.startDate > todayKey
-      ? "PRÓXIMA RUTINA"
-      : weekNum === defaultWeekNum
-        ? "RUTINA VIGENTE"
-        : "HISTÓRICO";
+    const statusLabel = weekNum === defaultWeekNum ? "RUTINA VIGENTE" : "HISTÓRICO";
 
     view.innerHTML = `
       <div class="view">
@@ -189,8 +190,14 @@
           </div>
         </section>
 
+        ${weekNum !== defaultWeekNum ? `
+          <div class="history-alert" style="--accent:var(--${accent})">
+            <div><strong>Estás viendo una rutina anterior.</strong><span>La vigente es Semana ${defaultWeekNum}.</span></div>
+            <button data-go-current="${modeId}">Ir a la vigente</button>
+          </div>` : ""}
+
         <div class="week-select" style="--accent:var(--${accent})">
-          ${weeks.map(w=>`<button class="${w===weekNum?"active":""}" data-week="${w}" data-mode-id="${modeId}">Semana ${w}</button>`).join("")}
+          ${weeks.map(w=>`<button class="${w===weekNum?"active":""} ${w===defaultWeekNum?"current-week":""}" data-week="${w}" data-mode-id="${modeId}">Semana ${w}${w===defaultWeekNum?" · actual":""}</button>`).join("")}
         </div>
 
         <nav class="sticky-nav" id="section-nav" style="--accent:var(--${accent})">
@@ -210,6 +217,85 @@
       </div>`;
 
     setupScrollSpy(data.circuits.map(c=>c.id));
+  }
+
+  function notesView(){
+    const saved = localStorage.getItem(NOTES_KEY) || "";
+    view.innerHTML = `
+      <div class="view notes-view">
+        <section class="notes-hero">
+          <div class="eyebrow">Bloc personal</div>
+          <h1>Notas de sesión</h1>
+          <p>Escribí o dictá mientras hacés kinesio o TO. Se guarda automáticamente en este dispositivo.</p>
+        </section>
+
+        <div class="notes-tip">
+          <strong>Para dictar:</strong> tocá el campo y usá el micrófono del teclado del iPhone.
+        </div>
+
+        <textarea id="session-notes" class="notes-textarea" placeholder="Ej: Remo con mancuerna: 12 kg. El press se hace con..."></textarea>
+
+        <div class="notes-status-row">
+          <span id="notes-status">Guardado</span>
+          <span>Solo en este dispositivo</span>
+        </div>
+
+        <div class="notes-actions">
+          <button class="secondary-action" id="notes-date">+ Fecha y hora</button>
+          <button class="primary-action" id="notes-copy">Copiar todo</button>
+        </div>
+
+        <button class="notes-clear" id="notes-clear">Vaciar notas</button>
+      </div>`;
+
+    const area = document.getElementById("session-notes");
+    const status = document.getElementById("notes-status");
+    area.value = saved;
+
+    let saveTimer;
+    area.addEventListener("input", () => {
+      status.textContent = "Guardando…";
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        localStorage.setItem(NOTES_KEY, area.value);
+        status.textContent = "Guardado";
+      }, 180);
+    });
+
+    document.getElementById("notes-date").addEventListener("click", () => {
+      const now = new Date();
+      const stamp = now.toLocaleString("es-AR", {
+        day:"2-digit", month:"2-digit", year:"numeric",
+        hour:"2-digit", minute:"2-digit"
+      });
+      const prefix = area.value.trim() ? "\n\n" : "";
+      area.value += prefix + "— " + stamp + " —\n";
+      localStorage.setItem(NOTES_KEY, area.value);
+      status.textContent = "Guardado";
+      area.focus();
+      area.setSelectionRange(area.value.length, area.value.length);
+    });
+
+    document.getElementById("notes-copy").addEventListener("click", async () => {
+      const button = document.getElementById("notes-copy");
+      try {
+        await navigator.clipboard.writeText(area.value);
+        button.textContent = "Copiado ✓";
+      } catch(e) {
+        area.select();
+        document.execCommand("copy");
+        button.textContent = "Copiado ✓";
+      }
+      setTimeout(() => button.textContent = "Copiar todo", 1400);
+    });
+
+    document.getElementById("notes-clear").addEventListener("click", () => {
+      if(!area.value.trim() || confirm("¿Vaciar todas las notas guardadas en este dispositivo?")){
+        area.value = "";
+        localStorage.removeItem(NOTES_KEY);
+        status.textContent = "Vacío";
+      }
+    });
   }
 
   function circuitHtml(c){
@@ -253,9 +339,20 @@
 
   function renderFromHash(){
     const raw = location.hash.replace(/^#/,"") || "home";
-    if(raw==="home"){ homeView(); return; }
+    if(raw==="home"){ firstRender=false; homeView(); return; }
+    if(raw==="notes"){ firstRender=false; notesView(); return; }
+
     const [modeId,w] = raw.split("/");
     const week = w && /^w\d+$/.test(w) ? Number(w.slice(1)) : null;
+    const mode = DATA.modes[modeId];
+
+    if(firstRender && IS_STANDALONE && mode && week && mode.currentWeek && week !== Number(mode.currentWeek)){
+      firstRender=false;
+      location.replace("#"+modeId);
+      return;
+    }
+
+    firstRender=false;
     modeView(modeId,week);
   }
 
