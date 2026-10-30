@@ -115,8 +115,8 @@
 
           <div class="progress-row">
             <div>
-              <div class="eyebrow">Progreso</div>
-              <span class="progress-big">${p.fullWeeks}+${p.rest}</span>
+              <div class="eyebrow">Semanas completas + días</div>
+              <span class="progress-big">${p.fullWeeks} sem · ${p.rest} d</span>
             </div>
             <div class="progress-small">
               ${p.days} días postoperatorio<br>
