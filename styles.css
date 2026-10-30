@@ -45,16 +45,21 @@ button{cursor:pointer}
   position:sticky;
   top:0;
   z-index:50;
-  height:58px;
+  min-height:calc(58px + env(safe-area-inset-top));
   display:flex;
-  align-items:center;
+  align-items:flex-end;
   justify-content:space-between;
   gap:12px;
-  padding:0 16px;
+  padding:env(safe-area-inset-top) 16px 0;
   background:rgba(7,17,31,.86);
   border-bottom:1px solid var(--line);
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
+}
+.site-header > *{
+  min-height:58px;
+  display:flex;
+  align-items:center;
 }
 .brand{
   display:flex;
@@ -311,7 +316,7 @@ button{cursor:pointer}
 .sticky-nav{
   position:-webkit-sticky;
   position:sticky;
-  top:58px;
+  top:calc(58px + env(safe-area-inset-top));
   z-index:45;
   display:flex;
   gap:20px;
@@ -615,5 +620,10 @@ button{cursor:pointer}
     overflow:hidden;
     box-shadow:0 35px 90px rgba(0,0,0,.32);
   }
-  .site-header{top:24px}
+  .site-header{
+    top:24px;
+    min-height:58px;
+    padding:0 16px;
+  }
+  .sticky-nav{top:82px}
 }
