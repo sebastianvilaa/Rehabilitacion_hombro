@@ -422,6 +422,123 @@ button{cursor:pointer}
   letter-spacing:-.045em;
   font-weight:900;
 }
+
+.exercise-title-row{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.exercise-title-row h3{
+  flex:1 1 auto;
+}
+.exercise-mic{
+  flex:0 0 34px;
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border:1px solid color-mix(in srgb,var(--accent) 18%,var(--line));
+  border-radius:11px;
+  background:rgba(255,255,255,.025);
+  color:var(--accent);
+  font-size:20px;
+  line-height:1;
+  transform:rotate(-18deg);
+}
+.exercise-mic.has-note{
+  background:color-mix(in srgb,var(--accent) 10%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 18%,transparent);
+}
+.exercise-mic:active{transform:rotate(-18deg) scale(.95)}
+.exercise-note-panel{
+  margin-top:12px;
+  padding-top:11px;
+  border-top:1px solid var(--line);
+}
+.exercise-note-area{
+  width:100%;
+  min-height:84px;
+  resize:vertical;
+  border:1px solid color-mix(in srgb,var(--accent) 18%,var(--line));
+  border-radius:13px;
+  outline:none;
+  padding:11px 12px;
+  background:rgba(255,255,255,.025);
+  color:var(--text);
+  font:400 13px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  caret-color:var(--accent);
+}
+.exercise-note-area:focus{
+  border-color:color-mix(in srgb,var(--accent) 50%,var(--line));
+}
+.exercise-note-area::placeholder{color:#65768b}
+.exercise-note-controls{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:6px;
+  color:var(--muted);
+  font-size:10px;
+}
+.exercise-note-controls span{
+  color:var(--accent);
+  font-weight:800;
+}
+.exercise-note-controls button{
+  border:0;
+  background:none;
+  color:var(--muted);
+  padding:3px 0;
+  font-size:10px;
+  font-weight:800;
+}
+
+.exercise-notes-summary{
+  margin-top:30px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+}
+.exercise-note-summary-item{
+  display:grid;
+  gap:4px;
+  padding:13px 0;
+  border-bottom:1px solid var(--line);
+}
+.exercise-note-summary-meta{
+  color:var(--muted);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.035em;
+  font-weight:850;
+}
+.exercise-note-summary-item strong{
+  color:var(--text);
+  font-size:13px;
+}
+.exercise-note-summary-item span{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.45;
+}
+.empty-exercise-notes{
+  padding:14px 0;
+  color:var(--muted);
+  font-size:12px;
+}
+.chatgpt-export{
+  width:100%;
+  min-height:48px;
+  margin-top:16px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--to),var(--kine));
+  color:#07111f;
+  font-size:12px;
+  font-weight:900;
+}
+
 .exercise h3{
   margin:0;
   font-size:17px;
