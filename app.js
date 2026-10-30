@@ -541,7 +541,14 @@
                 <h3>${ex.name}</h3>
                 <button class="exercise-mic ${savedNote?"has-note":""}" type="button"
                   aria-label="Dictar nota sobre ${ex.name}"
-                  data-exercise-mic="${noteKey}">⌁</button>
+                  data-exercise-mic="${noteKey}">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="9" y="3" width="6" height="11" rx="3"></rect>
+                    <path d="M6.5 11.5a5.5 5.5 0 0 0 11 0"></path>
+                    <path d="M12 17v4"></path>
+                    <path d="M9 21h6"></path>
+                  </svg>
+                </button>
               </div>
               <div class="dose">${ex.dose}</div>
               <p><b>Cómo:</b> ${ex.how}</p>
