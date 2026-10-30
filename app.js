@@ -93,6 +93,12 @@
       const modeId = week.dataset.modeId;
       location.hash="#"+modeId+"/w"+week.dataset.week;
     }
+    const route = e.target.closest("[data-route]");
+    if(route){
+      location.hash = "#" + route.dataset.route;
+      return;
+    }
+
     const current = e.target.closest("[data-go-current]");
     if(current){
       location.hash = "#" + current.dataset.goCurrent;
@@ -179,6 +185,20 @@
               <span class="mode-arrow">→</span>
             </button>
           </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div><h2>Mediciones</h2><p>Valores objetivos para comparar la evolución.</p></div>
+          </div>
+          <button class="measurement-entry" data-route="measurements">
+            <div>
+              <span class="measurement-entry-kicker">30.10.2026 · Wenchi</span>
+              <strong>Fuerza de rotadores</strong>
+              <small>Derecho vs. izquierdo · RE / RI</small>
+            </div>
+            <span class="mode-arrow">→</span>
+          </button>
         </section>
 
         <section class="section">
@@ -426,6 +446,69 @@
     return parts.join("\n");
   }
 
+  function measurementsView(){
+    const entries = DATA.measurements || [];
+    const latest = entries[entries.length-1];
+    if(!latest){
+      view.innerHTML = '<div class="view"><p>No hay mediciones registradas.</p></div>';
+      return;
+    }
+
+    const a = latest.analysis;
+    view.innerHTML = `
+      <div class="view measurements-view">
+        <section class="measurements-hero">
+          <div class="eyebrow">Seguimiento objetivo</div>
+          <h1>Mediciones</h1>
+          <p>${latest.label}. Medido por ${latest.measuredBy} el 30/10/2026.</p>
+        </section>
+
+        <section class="measurement-card operated">
+          <div class="measurement-card-head">
+            <div>
+              <div class="eyebrow">Operado</div>
+              <h2>${latest.operated.side}</h2>
+            </div>
+          </div>
+          <div class="measurement-values">
+            <div><span>Rotación externa</span><strong>${String(latest.operated.externalRotation).replace(".",",")}</strong></div>
+            <div><span>Rotación interna</span><strong>${latest.operated.internalRotation}</strong></div>
+          </div>
+        </section>
+
+        <section class="measurement-card healthy">
+          <div class="measurement-card-head">
+            <div>
+              <div class="eyebrow">Referencia</div>
+              <h2>${latest.healthy.side}</h2>
+            </div>
+          </div>
+          <div class="measurement-values">
+            <div><span>Rotación externa</span><strong>${latest.healthy.externalRotation}</strong></div>
+            <div><span>Rotación interna</span><strong>${latest.healthy.internalRotation}</strong></div>
+          </div>
+        </section>
+
+        <section class="measurement-analysis">
+          <div class="eyebrow">Comparación</div>
+          <h2>Lectura de referencia</h2>
+          <div class="analysis-grid">
+            <div><span>Simetría RE</span><strong>${a.externalRotationSymmetry}%</strong></div>
+            <div><span>Simetría RI</span><strong>${a.internalRotationSymmetry}%</strong></div>
+            <div><span>RE / RI derecho</span><strong>${a.operatedErIrRatio}%</strong></div>
+            <div><span>RE / RI izquierdo</span><strong>${a.healthyErIrRatio}%</strong></div>
+          </div>
+          <div class="measurement-note">
+            <p><b>Objetivo RE/RI del plan:</b> ${a.targetErIrMin}–${a.targetErIrMax}%.</p>
+            <p>La proporción RE/RI está dentro de ese rango en ambos hombros. Frente al lado sano, el derecho está aproximadamente <b>${a.externalRotationDifference}% por debajo en RE</b> y <b>${a.internalRotationDifference}% por debajo en RI</b>.</p>
+            <p>Tomamos esta medición como referencia del 30/10/2026 para comparar futuras evaluaciones.</p>
+          </div>
+        </section>
+
+        <div class="back-row"><button class="back-link" data-action="home">← Volver al inicio</button></div>
+      </div>`;
+  }
+
   function notesView(){
     const saved = localStorage.getItem(NOTES_KEY) || "";
     view.innerHTML = `
@@ -607,6 +690,7 @@
     const raw = location.hash.replace(/^#/,"") || "home";
     if(raw==="home"){ firstRender=false; homeView(); return; }
     if(raw==="notes"){ firstRender=false; notesView(); return; }
+    if(raw==="measurements"){ firstRender=false; measurementsView(); return; }
 
     const [modeId,w] = raw.split("/");
     const week = w && /^w\d+$/.test(w) ? Number(w.slice(1)) : null;
