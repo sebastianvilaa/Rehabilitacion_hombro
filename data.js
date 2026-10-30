@@ -138,7 +138,7 @@ window.REHAB_DATA = {
               id:"k12-c1",label:"Bloque 01",title:"Activación y movilidad",subtitle:"Entrada en calor y activación previa a la carga. RE progresando a 60°.",
               exercises:[
                 {n:"01",name:"Movilidad activa en todos los planos",dose:"2 × 10",how:"Flexión, abducción y rotaciones en rango completo, como entrada en calor."},
-                {n:"02",name:"RE / RI con banda en abducción 60°",dose:"2 × 12",how:"Rotación externa e interna con banda, llevando la abducción a 60° y manteniendo una activación suave.",note:"Probablemente es la misma mecánica que venías haciendo, ahora a 60°. Confirmar mañana la ejecución exacta."},
+                {n:"02",name:"RE / RI con banda en abducción 60°",dose:"2 × 12",how:"Rotación externa e interna con banda, llevando la abducción a 60° y manteniendo una activación suave.",note:"Ejecución real en sesión: banda amarilla, con resistencia muy suave."},
                 {n:"03",name:"Movilidad torácica",dose:"2 × 10",how:"Extensión y rotación torácica, sobre rulo o sentado, acompañando el gesto."},
                 {n:"04",name:"Activación de manguito + serrato",dose:"2 × 15",how:"Banda liviana para RE/RI y punch de serrato como preparación.",note:"Este componente de serrato aparece explícitamente en el nuevo plan; confirmar mañana cómo lo quiere ejecutar Wenceslao."}
               ]
@@ -155,7 +155,7 @@ window.REHAB_DATA = {
             {
               id:"k12-c3",label:"Bloque 03",title:"Fuerza: empuje y tracción",subtitle:"Cargas altas y controladas, con técnica estricta.",
               exercises:[
-                {n:"01",name:"Remo con mancuerna pesado",dose:"4 × 8",how:"Traccionar llevando el codo atrás sin perder el control de la escápula.",note:"Es un cambio respecto a la banda que venías usando. Técnica y carga exactas a confirmar mañana."},
+                {n:"01",name:"Remo con mancuerna pesado",dose:"4 × 8",how:"Traccionar llevando el codo atrás sin perder el control de la escápula.",note:"Ejecución real en sesión: 12 kg."},
                 {n:"02",name:"Jalón dorsal con banda o polea",dose:"4 × 8",how:"Tracción vertical controlada con más resistencia.",note:"Es el dorsal que ya venías haciendo con banda negra; la progresión exacta de resistencia queda a definir."},
                 {n:"03",name:"Press de hombro con mancuerna",dose:"4 × 8",how:"Press de hombro con recorrido completo si el control lo permite y sin dolor.",note:"Ejercicio nuevo. Arranque y carga a definir en sesión."},
                 {n:"04",name:"Curl de bíceps",dose:"3 × 10",how:"Flexo-extensión de codo controlada, en la variante que venís haciendo tipo martillo.",note:"Venías usando 7,5 kg. El plan indica subir carga, pero no fijamos todavía 10 kg."}
