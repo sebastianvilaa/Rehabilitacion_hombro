@@ -77,9 +77,9 @@ window.REHAB_DATA = {
         "11": {
           startDate: "2026-10-26",
           week: 11,
-          status: "vigente",
+          status: "historico",
           title: "Fuerza progresiva",
-          dateLabel: "Rutina vigente · Semana 11",
+          dateLabel: "Semana 11 · histórico",
           intro: "Trabajo de fuerza progresiva en rango completo. La rutina sigue el esquema indicado en kinesio y su ejecución práctica actual.",
           circuits: [
             {
@@ -129,9 +129,9 @@ window.REHAB_DATA = {
         "12": {
           week: 12,
           startDate: "2026-11-02",
-          status: "proxima",
+          status: "vigente",
           title: "Fuerza pesada",
-          dateLabel: "Desde 02/11/2026",
+          dateLabel: "Rutina vigente · Semana 12",
           intro: "Nueva fase de fuerza más pesada y controlada. Suben el ángulo de trabajo, la carga y la demanda escapular, todavía sin gesto de pádel ni pliometría.",
           circuits: [
             {
