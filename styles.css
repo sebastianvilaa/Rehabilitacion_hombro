@@ -16,10 +16,16 @@
   --radius:22px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+  background:#07111f;
+  color-scheme:dark;
+  min-height:100%;
+}
 body{
   margin:0;
   min-height:100vh;
+  min-height:100dvh;
   background:
     radial-gradient(circle at 85% 0%,rgba(58,169,255,.09),transparent 28%),
     linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
@@ -145,7 +151,7 @@ button{cursor:pointer}
 .progress-big{
   display:block;
   margin-top:4px;
-  font-size:38px;
+  font-size:30px;
   line-height:.95;
   letter-spacing:-.05em;
   font-weight:900;
@@ -534,13 +540,16 @@ button{cursor:pointer}
   z-index:100;
   display:grid;
   place-items:center;
-  padding:24px;
+  min-height:100vh;
+  min-height:100dvh;
+  padding:calc(20px + env(safe-area-inset-top)) 24px calc(20px + env(safe-area-inset-bottom));
   background:
     radial-gradient(circle at 80% 10%,rgba(103,214,255,.10),transparent 30%),
     var(--bg);
 }
 .lock-inner{
   width:min(100%,390px);
+  transform:translateY(-7vh);
 }
 .lock-mark{
   width:44px;height:44px;
