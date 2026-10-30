@@ -276,14 +276,31 @@
     const key = exerciseNoteKey(modeId,week,circuitIndex,exerciseIndex);
     const clean = text.trim();
     if(clean){
+      const previous = notes[key] || {};
+      const now = new Date().toISOString();
       notes[key] = {
         text: clean,
-        updatedAt: new Date().toISOString()
+        createdAt: previous.createdAt || previous.updatedAt || now,
+        updatedAt: now
       };
     } else {
       delete notes[key];
     }
     saveExerciseNotes(notes);
+  }
+
+  function formatNoteTimestamp(value){
+    if(!value) return "";
+    const date = new Date(value);
+    if(Number.isNaN(date.getTime())) return "";
+    return date.toLocaleString("es-AR", {
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric",
+      hour:"2-digit",
+      minute:"2-digit",
+      hour12:false
+    });
   }
 
   function openExerciseNote(modeId, week, circuitIndex, exerciseIndex, startListening=false){
@@ -367,7 +384,9 @@
         circuit: meta.circuit.title,
         exerciseIndex: Number(exerciseIndex),
         exercise: meta.exercise.name,
-        text: value.text.trim()
+        text: value.text.trim(),
+        timestamp: value.createdAt || value.updatedAt || "",
+        timestampLabel: formatNoteTimestamp(value.createdAt || value.updatedAt)
       });
     });
 
@@ -395,7 +414,8 @@
           parts.push("\n" + group.toUpperCase());
           currentGroup = group;
         }
-        parts.push("- " + r.circuit + " → " + r.exercise + ": " + r.text);
+        const when = r.timestampLabel ? " [" + r.timestampLabel + "]" : "";
+        parts.push("- " + r.circuit + " → " + r.exercise + when + ": " + r.text);
       });
     }
 
@@ -452,7 +472,7 @@
     exerciseList.innerHTML = exerciseRows.length
       ? exerciseRows.map(r => `
           <article class="exercise-note-summary-item">
-            <div class="exercise-note-summary-meta">${r.modeName} · Semana ${r.week}</div>
+            <div class="exercise-note-summary-meta">${r.modeName} · Semana ${r.week}${r.timestampLabel ? " · " + r.timestampLabel : ""}</div>
             <strong>${r.exercise}</strong>
             <span>${r.text}</span>
           </article>`).join("")
