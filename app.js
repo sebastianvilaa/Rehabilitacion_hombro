@@ -4,7 +4,7 @@
   const PIN_HASH = "e3e54cd90759e644036cf64ac6b088e7ffb743a0c557712b483ccf880965e1bf";
   const SESSION_KEY = "rehab_unlocked_v1";
   const NOTES_KEY = "rehab_session_notes_v1";
-  const EXERCISE_NOTES_KEY = "rehab_exercise_notes_v1";
+  const EXERCISE_NOTES_KEY = "rehab_exercise_notes_v2";
   const IS_STANDALONE = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
   let firstRender = true;
 
@@ -213,6 +213,10 @@
       </div>`;
   }
 
+  function routineLabel(data){
+    return data?.routineNumber ? "Rutina " + data.routineNumber : "Semana " + data?.week;
+  }
+
   function modeView(modeId, requestedWeek){
     const mode = DATA.modes[modeId];
     if(!mode){ homeView(); return; }
@@ -229,7 +233,7 @@
       <div class="view">
         <section class="mode-header ${accent}">
           <div class="eyebrow">${mode.name}</div>
-          <h1>${data.title}<br>Semana ${data.week}</h1>
+          <h1>${data.routineNumber ? "Rutina " + data.routineNumber : data.title}<br>${data.routineNumber ? data.title : "Semana " + data.week}</h1>
           <p>${data.intro}</p>
           <div class="mode-meta">
             <span class="current">${statusLabel}</span>
@@ -239,12 +243,12 @@
 
         ${weekNum !== defaultWeekNum ? `
           <div class="history-alert" style="--accent:var(--${accent})">
-            <div><strong>Estás viendo una rutina anterior.</strong><span>La vigente es Semana ${defaultWeekNum}.</span></div>
+            <div><strong>Estás viendo una rutina anterior.</strong><span>La vigente es ${routineLabel(mode.weeks[String(defaultWeekNum)])}.</span></div>
             <button data-go-current="${modeId}">Ir a la vigente</button>
           </div>` : ""}
 
         <div class="week-select" style="--accent:var(--${accent})">
-          ${weeks.map(w=>`<button class="${w===weekNum?"active":""} ${w===defaultWeekNum?"current-week":""}" data-week="${w}" data-mode-id="${modeId}">Semana ${w}${w===defaultWeekNum?" · actual":""}</button>`).join("")}
+          ${weeks.map(w=>`<button class="${w===weekNum?"active":""} ${w===defaultWeekNum?"current-week":""}" data-week="${w}" data-mode-id="${modeId}">${routineLabel(mode.weeks[String(w)])}${w===defaultWeekNum?" · actual":""}</button>`).join("")}
         </div>
 
         <nav class="sticky-nav" id="section-nav" style="--accent:var(--${accent})">
@@ -400,6 +404,7 @@
         modeId,
         modeName: meta.mode.name,
         week: Number(week),
+        routineNumber: meta.weekData.routineNumber || null,
         circuitIndex: Number(circuitIndex),
         circuit: meta.circuit.title,
         exerciseIndex: Number(exerciseIndex),
@@ -429,7 +434,7 @@
     if(rows.length){
       let currentGroup = "";
       rows.forEach(r => {
-        const group = r.modeName + " · Semana " + r.week;
+        const group = r.modeName + " · " + (r.routineNumber ? "Rutina " + r.routineNumber : "Semana " + r.week);
         if(group !== currentGroup){
           parts.push("\n" + group.toUpperCase());
           currentGroup = group;
@@ -501,6 +506,7 @@
           <div class="measurement-note">
             <p><b>Objetivo RE/RI del plan:</b> ${a.targetErIrMin}–${a.targetErIrMax}%.</p>
             <p>La proporción RE/RI está dentro de ese rango en ambos hombros. Frente al lado sano, el derecho está aproximadamente <b>${a.externalRotationDifference}% por debajo en RE</b> y <b>${a.internalRotationDifference}% por debajo en RI</b>.</p>
+            <p><b>Objetivo de fuerza:</b> LSI 90%. Re-test previsto entre semanas postoperatorias 16–18.</p>
             <p>Tomamos esta medición como referencia del 30/10/2026 para comparar futuras evaluaciones.</p>
           </div>
         </section>
@@ -555,7 +561,7 @@
     exerciseList.innerHTML = exerciseRows.length
       ? exerciseRows.map(r => `
           <article class="exercise-note-summary-item">
-            <div class="exercise-note-summary-meta">${r.modeName} · Semana ${r.week}${r.timestampLabel ? " · " + r.timestampLabel : ""}</div>
+            <div class="exercise-note-summary-meta">${r.modeName} · ${r.routineNumber ? "Rutina " + r.routineNumber : "Semana " + r.week}${r.timestampLabel ? " · " + r.timestampLabel : ""}</div>
             <strong>${r.exercise}</strong>
             <span>${r.text}</span>
           </article>`).join("")
