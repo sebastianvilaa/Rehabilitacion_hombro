@@ -24,7 +24,9 @@ window.REHAB_DATA = {
         externalRotationDifference: 28.1,
         internalRotationDifference: 31.5,
         targetErIrMin: 66,
-        targetErIrMax: 75
+        targetErIrMax: 75,
+        targetLsi: 90,
+        retestLabel: "Semanas 16–18"
       }
     }
   ],
@@ -155,56 +157,60 @@ window.REHAB_DATA = {
         },
         "12": {
           week: 12,
+          routineNumber: 6,
           startDate: "2026-11-02",
           status: "vigente",
-          title: "Fuerza pesada",
-          dateLabel: "Rutina vigente · Semana 12",
-          intro: "Nueva fase de fuerza más pesada y controlada. Suben el ángulo de trabajo, la carga y la demanda escapular, todavía sin gesto de pádel ni pliometría.",
+          title: "Fuerza + movilidad de RE",
+          dateLabel: "Vigente · desde 02/11/2026",
+          postopLabel: "Postop ~12 semanas",
+          intro: "Rutina ajustada después de la medición de fuerza. El foco es ganar rotación externa y cerrar el déficit de fuerza respecto del hombro sano, todavía sin gesto de pádel ni pliometría.",
           circuits: [
             {
-              id:"k12-c1",label:"Bloque 01",title:"Activación y movilidad",subtitle:"Entrada en calor y activación previa a la carga. RE progresando a 60°.",
+              id:"k12-c1",label:"Bloque 01",title:"Movilidad de rotación externa",subtitle:"Ganar rango de RE progresivamente y sin dolor.",
               exercises:[
-                {n:"01",name:"Movilidad activa en todos los planos",dose:"2 × 10",how:"Flexión, abducción y rotaciones en rango completo, como entrada en calor."},
-                {n:"02",name:"RE / RI con banda en abducción 60°",dose:"2 × 12",how:"Rotación externa e interna con banda, llevando la abducción a 60° y manteniendo una activación suave.",note:"Ejecución real en sesión: banda amarilla, con resistencia muy suave."},
-                {n:"03",name:"Movilidad torácica",dose:"2 × 10",how:"Extensión y rotación torácica, sobre rulo o sentado, acompañando el gesto."},
-                {n:"04",name:"Activación de manguito + serrato",dose:"2 × 15",how:"Banda liviana para RE/RI y punch de serrato como preparación.",note:"Este componente de serrato aparece explícitamente en el nuevo plan; confirmar mañana cómo lo quiere ejecutar Wenchi."}
+                {n:"01",name:"Rotación externa con bastón",dose:"3 × 30–45 s",how:"Con el bastón, trabajar la rotación externa en tres posiciones: brazo a 0°, 45° y 90° de abducción. Llegar al rango final cómodo y sostener sin dolor."},
+                {n:"02",name:"Estiramiento en marco de puerta",dose:"3 × 30 s",how:"Apoyarte en el marco y abrir suavemente el pecho para ganar rotación externa. Sin rebotes ni dolor."},
+                {n:"03",name:"Contracción–relajación en RE (PNF)",dose:"3 × 8–10 s",how:"Llegar al final cómodo de rotación externa, hacer una contracción isométrica submáxima durante 8–10 segundos, relajar y avanzar suavemente un poco más en el nuevo rango."},
+                {n:"04",name:"CARs de hombro · foco RE",dose:"2 × 5",how:"Hacer rotaciones articulares lentas y controladas del hombro, buscando especialmente recorrer bien el arco de rotación externa."}
               ]
             },
             {
-              id:"k12-c2",label:"Bloque 02",title:"Fuerza de rotadores y manguito",subtitle:"Más carga, controlando especialmente la vuelta excéntrica.",
+              id:"k12-c2",label:"Bloque 02",title:"Fuerza de rotadores y manguito",subtitle:"Acercarse a los valores del lado sano sin llevar el manguito a máxima carga.",
               exercises:[
-                {n:"01",name:"RE en abducción 60°",dose:"3 × 10",how:"Con banda o polea, rotación externa a 60° de abducción. Subir carga respecto a la fase anterior y controlar la vuelta."},
-                {n:"02",name:"RI en abducción 60°",dose:"3 × 10",how:"Misma posición a 60°, rotación interna con más carga y vuelta controlada."},
-                {n:"03",name:"Full can con mancuerna",dose:"3 × 10",how:"Brazos en plano escapular, pulgar arriba y recorrido completo con control.",note:"Venías usando 2,5 kg. La nueva carga queda a definir en sesión; no fijamos todavía 3, 4 o 5 kg."},
-                {n:"04",name:"RE acostado de costado",dose:"3 × 12",how:"Decúbito lateral, codo pegado al cuerpo, abrir hacia afuera con mancuerna y bajar lento.",note:"Venías usando 4 kg. El plan pide progresar carga, pero el valor nuevo queda a definir."}
+                {n:"01",name:"RE en abducción 60°",dose:"3 × 10",how:"Con polea o banda, hacer rotación externa con el brazo a 60° de abducción. Subir la carga respecto de la fase anterior y controlar especialmente la vuelta lenta."},
+                {n:"02",name:"RI en abducción 60°",dose:"3 × 10",how:"En la misma posición a 60°, hacer rotación interna con más carga, manteniendo el movimiento controlado también al volver."},
+                {n:"03",name:"Full can con mancuerna",dose:"3 × 10",how:"Elevar el brazo en plano escapular con el pulgar hacia arriba, usando más carga pero controlando todo el recorrido."},
+                {n:"04",name:"RE acostado de costado con mancuerna",dose:"3 × 12",how:"Acostado de costado, codo pegado al cuerpo. Abrir el antebrazo hacia afuera y bajar lento, con foco en la fase excéntrica."}
               ]
             },
             {
               id:"k12-c3",label:"Bloque 03",title:"Fuerza: empuje y tracción",subtitle:"Cargas altas y controladas, con técnica estricta.",
               exercises:[
-                {n:"01",name:"Remo con mancuerna pesado",dose:"4 × 8",how:"Traccionar llevando el codo atrás sin perder el control de la escápula.",note:"Ejecución real en sesión: 12 kg."},
-                {n:"02",name:"Jalón dorsal con banda o polea",dose:"4 × 8",how:"Tracción vertical controlada con más resistencia.",note:"Es el dorsal que ya venías haciendo con banda negra; la progresión exacta de resistencia queda a definir."},
-                {n:"03",name:"Press de hombro con mancuerna",dose:"4 × 8",how:"Press de hombro con recorrido completo si el control lo permite y sin dolor.",note:"Ejercicio nuevo. Arranque y carga a definir en sesión."},
-                {n:"04",name:"Curl de bíceps",dose:"3 × 10",how:"Flexo-extensión de codo controlada, en la variante que venís haciendo tipo martillo.",note:"Venías usando 7,5 kg. El plan indica subir carga, pero no fijamos todavía 10 kg."}
+                {n:"01",name:"Remo con mancuerna pesado",dose:"4 × 8",how:"Traccionar llevando el codo hacia atrás sin perder el control de la escápula.",note:"Última ejecución registrada: 12 kg."},
+                {n:"02",name:"Jalón dorsal con banda o polea",dose:"4 × 8",how:"Hacer una tracción vertical con más resistencia, manteniendo el recorrido controlado."},
+                {n:"03",name:"Press de hombro con mancuerna",dose:"4 × 8",how:"Progresar la carga y usar recorrido completo solo si el control lo permite y no aparece dolor."},
+                {n:"04",name:"Curl de bíceps / flexo-extensión de codo",dose:"3 × 10",how:"Subir progresivamente la carga del bíceps, manteniendo el movimiento controlado."}
               ]
             },
             {
-              id:"k12-c4",label:"Bloque 04",title:"Estabilidad escapular",subtitle:"Más demanda de serrato, escápula y manguito posterior.",
+              id:"k12-c4",label:"Bloque 04",title:"Estabilidad escapular",subtitle:"Más demanda de escápula y serrato para sostener mejor la carga.",
               exercises:[
-                {n:"01",name:"Shoulder taps en plancha",dose:"3 × 10 por lado",how:"En plancha desde rodillas o pies, tocar el hombro opuesto alternando sin dejar que roten las caderas.",note:"Nuevo. Busca estabilidad, serrato y control escapular."},
-                {n:"02",name:"Face pull con banda o polea",dose:"3 × 12",how:"Traccionar hacia la cara y terminar con rotación externa, manteniendo el control de la escápula.",note:"Venís haciéndolo con banda negra. El nuevo plan pide más carga, a definir según control."},
-                {n:"03",name:"Wall slide con banda",dose:"3 × 12",how:"Deslizar sobre la pared manteniendo rotación externa y tensión constante en la banda.",note:"Venís usando banda verde; la azul es más fuerte, pero no cambiamos resistencia hasta probarlo."},
-                {n:"04",name:"Y-T-W en banco, boca abajo",dose:"3 × 8 por posición",how:"Boca abajo, elevar los brazos formando sucesivamente una Y, una T y una W, activando trapecio medio e inferior.",note:"Ejercicio nuevo, con carga liviana. Confirmar mañana la ejecución exacta."}
+                {n:"01",name:"Shoulder taps en plancha",dose:"3 × 10 por lado",how:"En plancha desde rodillas o pies, tocar el hombro opuesto alternando sin dejar que roten las caderas. Buscar serrato y control escapular."},
+                {n:"02",name:"Face pull con banda o polea",dose:"3 × 12",how:"Traccionar hacia la cara y terminar con rotación externa, manteniendo el control de la escápula y el manguito posterior."},
+                {n:"03",name:"Wall slide con banda",dose:"3 × 12",how:"Deslizar los brazos por la pared manteniendo rotación externa y tensión constante en la banda."},
+                {n:"04",name:"Y-T-W en banco boca abajo",dose:"3 × 8 por posición",how:"Boca abajo, elevar los brazos formando una Y, una T y una W. Activar trapecio medio e inferior con carga liviana."}
               ]
             }
           ],
           rules:[
-            "Dolor siempre por debajo de 4/10; por encima de 5/10 durante el ejercicio, frenar.",
+            "Dolor siempre por debajo de 4/10; si supera 5/10 durante el ejercicio, frenar.",
             "Si el dolor aumenta al día siguiente, bajar la carga en la próxima sesión.",
-            "Fuerza pesada sí, pero sin fallo muscular ni cargas máximas sin control técnico.",
+            "Fuerza pesada controlada sí; fallo muscular y cargas máximas sin control técnico, no.",
             "Todavía no gesto de pádel, lanzamientos, saque, remate ni pliometría.",
-            "La rotación externa progresa a 60° y luego hacia 90/90."
+            "La rotación externa progresa a 60° y más adelante hacia 90/90.",
+            "Objetivo de fuerza: acercarse a un LSI del 90%; re-test previsto entre semanas postoperatorias 16–18."
           ]
+        }
         }
       }
     }
