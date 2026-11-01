@@ -431,6 +431,40 @@ button{cursor:pointer}
   font-size:12px;
   font-weight:900;
 }
+
+.routine-select-wrap{
+  display:grid;
+  gap:7px;
+  margin:2px 0 8px;
+}
+.routine-select-wrap label{
+  color:var(--muted);
+  font-size:10px;
+  font-weight:850;
+  text-transform:uppercase;
+  letter-spacing:.045em;
+}
+.routine-select-wrap select{
+  width:100%;
+  min-height:44px;
+  appearance:none;
+  -webkit-appearance:none;
+  border:1px solid color-mix(in srgb,var(--accent) 28%,var(--line));
+  border-radius:14px;
+  outline:none;
+  padding:0 42px 0 13px;
+  background:
+    linear-gradient(45deg,transparent 50%,var(--accent) 50%) calc(100% - 18px) 18px/5px 5px no-repeat,
+    linear-gradient(135deg,var(--accent) 50%,transparent 50%) calc(100% - 13px) 18px/5px 5px no-repeat,
+    rgba(255,255,255,.025);
+  color:var(--text);
+  font-size:13px;
+  font-weight:800;
+}
+.routine-select-wrap select:focus{
+  border-color:color-mix(in srgb,var(--accent) 52%,var(--line));
+}
+
 .week-select{
   display:flex;
   gap:7px;
