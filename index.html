@@ -13,7 +13,7 @@
   <title>Rehabilitación · Hombro</title>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-v3.png">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261101-2045">
 </head>
 <body>
   <div id="lock" class="lock-screen">
@@ -22,9 +22,9 @@
       <div class="eyebrow">Acceso personal</div>
       <h1>Rehabilitación</h1>
       <p class="lock-copy">Ingresá tu PIN para continuar.</p>
-      <form id="pin-form" class="pin-form" autocomplete="off">
+      <form id="pin-form" class="pin-form" autocomplete="off" onsubmit="return false;">
         <input id="pin-input" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="••••••" aria-label="PIN">
-        <button type="submit">Entrar</button>
+        <button type="button" id="pin-submit">Entrar</button>
       </form>
       <p id="pin-error" class="pin-error" aria-live="polite"></p>
     </div>
@@ -46,7 +46,7 @@
     <main id="view"></main>
   </div>
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="data.js?v=20261101-2045"></script>
+  <script src="app.js?v=20261101-2045"></script>
 </body>
 </html>
