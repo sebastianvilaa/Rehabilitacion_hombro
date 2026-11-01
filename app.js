@@ -4,7 +4,7 @@
   const PIN_HASH = "e3e54cd90759e644036cf64ac6b088e7ffb743a0c557712b483ccf880965e1bf";
   const SESSION_KEY = "rehab_unlocked_v1";
   const NOTES_KEY = "rehab_session_notes_v1";
-  const EXERCISE_NOTES_KEY = "rehab_exercise_notes_v2";
+  const EXERCISE_NOTES_KEY = "rehab_exercise_notes_v3";
   const IS_STANDALONE = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
   let firstRender = true;
 
@@ -123,6 +123,12 @@
     }
   });
 
+  document.addEventListener("change", e => {
+    const select = e.target.closest("[data-routine-select]");
+    if(!select) return;
+    location.hash = "#" + select.dataset.modeId + "/w" + select.value;
+  });
+
   document.addEventListener("input", e => {
     const area = e.target.closest("[data-note-area]");
     if(!area) return;
@@ -207,7 +213,7 @@
           </div>
           <div class="history-line">
             <span class="week-chip">TO · ${toWeeks.length} semana registrada</span>
-            <span class="week-chip">Kine · ${kWeeks.length} semana registrada</span>
+            <span class="week-chip">Kine · ${kWeeks.length} rutinas registradas</span>
           </div>
         </section>
       </div>`;
@@ -237,7 +243,7 @@
           <p>${data.intro}</p>
           <div class="mode-meta">
             <span class="current">${statusLabel}</span>
-            <span class="progress-small">${data.dateLabel}</span>
+            <span class="progress-small">${data.routineNumber && data.postopLabel ? data.postopLabel + " · " + data.dateLabel : data.dateLabel}</span>
           </div>
         </section>
 
@@ -247,9 +253,21 @@
             <button data-go-current="${modeId}">Ir a la vigente</button>
           </div>` : ""}
 
-        <div class="week-select" style="--accent:var(--${accent})">
-          ${weeks.map(w=>`<button class="${w===weekNum?"active":""} ${w===defaultWeekNum?"current-week":""}" data-week="${w}" data-mode-id="${modeId}">${routineLabel(mode.weeks[String(w)])}${w===defaultWeekNum?" · actual":""}</button>`).join("")}
-        </div>
+        ${modeId === "kine" ? `
+          <div class="routine-select-wrap" style="--accent:var(--${accent})">
+            <label for="routine-select">Historial de rutinas</label>
+            <select id="routine-select" data-routine-select data-mode-id="${modeId}">
+              ${weeks.map(w=>{
+                const item = mode.weeks[String(w)];
+                return `<option value="${w}" ${w===weekNum?"selected":""}>Rutina ${item.routineNumber} · ${item.dateLabel}${w===defaultWeekNum?" · actual":""}</option>`;
+              }).join("")}
+            </select>
+          </div>
+        ` : `
+          <div class="week-select" style="--accent:var(--${accent})">
+            ${weeks.map(w=>`<button class="${w===weekNum?"active":""} ${w===defaultWeekNum?"current-week":""}" data-week="${w}" data-mode-id="${modeId}">${routineLabel(mode.weeks[String(w)])}${w===defaultWeekNum?" · actual":""}</button>`).join("")}
+          </div>
+        `}
 
         <nav class="sticky-nav" id="section-nav" style="--accent:var(--${accent})">
           ${data.circuits.map((c,i)=>`<button class="${i===0?"active":""}" data-scroll="${c.id}"><span class="nav-num">${String(i+1).padStart(2,"0")}</span><span>${c.title}</span></button>`).join("")}
