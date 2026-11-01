@@ -14,6 +14,7 @@
   const form = document.getElementById("pin-form");
   const input = document.getElementById("pin-input");
   const error = document.getElementById("pin-error");
+  const pinSubmit = document.getElementById("pin-submit");
   const lockButton = document.getElementById("lock-button");
   const refreshButton = document.getElementById("refresh-button");
   const notesButton = document.getElementById("notes-button");
@@ -40,23 +41,44 @@
     setTimeout(()=>input.focus(),80);
   }
 
-  form.addEventListener("submit", async e => {
-    e.preventDefault();
+  async function validatePin(){
     error.textContent="";
     const pin = input.value.trim();
+
     if(!/^\d{4,6}$/.test(pin)){
       error.textContent="Ingresá un PIN de 4 a 6 dígitos.";
       return;
     }
+
     if(PIN_HASH === "__PIN_HASH_PENDING__"){
       error.textContent="El acceso todavía no está configurado.";
       return;
     }
-    const hash = await sha256(pin);
-    if(hash === PIN_HASH) unlock();
-    else {
-      error.textContent="PIN incorrecto.";
-      input.select();
+
+    try {
+      const hash = await sha256(pin);
+      if(hash === PIN_HASH){
+        unlock();
+      } else {
+        error.textContent="PIN incorrecto.";
+        input.select();
+      }
+    } catch(e) {
+      error.textContent="No pude validar el PIN. Cerrá la app y volvé a abrirla.";
+    }
+  }
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    validatePin();
+  });
+
+  pinSubmit?.addEventListener("click", validatePin);
+
+  input.addEventListener("keydown", e => {
+    if(e.key === "Enter"){
+      e.preventDefault();
+      validatePin();
     }
   });
 
