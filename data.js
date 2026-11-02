@@ -337,7 +337,7 @@ window.REHAB_DATA = {
               exercises:[
                 {n:"01",name:"Rotación externa con bastón",dose:"3 × 30–45 s",how:"Trabajar la rotación externa con bastón en tres posiciones: 45°, 60° y 90° de abducción. Llegar al rango final cómodo y sostener sin dolor.",note:"Ejecución real 02/11: Wenchi indicó 45°, 60° y 90°."},
                 {n:"02",name:"Estiramiento en marco de puerta",dose:"3 × 30 s",how:"Abrir suavemente el pecho en el marco para ganar rotación externa, sin rebotes ni dolor."},
-                {n:"03",name:"Contracción–relajación en RE (PNF)",dose:"3 × 8–10 s",how:"Llegar al final cómodo de RE, hacer una contracción isométrica submáxima durante 8–10 segundos, relajar y avanzar suavemente un poco más."},
+                {n:"03",name:"Contracción–relajación en RE (PNF)",dose:"3 × 10 s",how:"Hacer el gesto de rotación externa con banda roja, pero en vez de ir y volver, mantener la posición durante 10 segundos.",note:"Ejecución real 02/11: banda roja, isométrico de rotación externa mantenido 10 segundos."},
                 {n:"04",name:"CARs de hombro · foco RE",dose:"2 × 5",how:"Hacer una rotación circular completa y controlada de todo el hombro, recorriendo el mayor arco cómodo.",note:"Ejecución real 02/11: rotación circular de todo el hombro."}
               ]
             },
@@ -362,7 +362,7 @@ window.REHAB_DATA = {
             {
               id:"k5-c4",label:"Bloque 04",title:"Estabilidad escapular",subtitle:"Más demanda de escápula y serrato para sostener mejor la carga.",
               exercises:[
-                {n:"01",name:"Shoulder taps en plancha",dose:"3 × 10 por lado",how:"Desde rodillas o pies, tocar el hombro opuesto alternando sin dejar que roten las caderas."},
+                {n:"01",name:"Shoulder taps en plancha",dose:"3 × 10 por lado",how:"Hacerlo arrodillado con una sola rodilla apoyada, tocando el hombro opuesto alternadamente y evitando que rote el tronco.",note:"Ejecución real 02/11: variante con una sola rodilla apoyada."},
                 {n:"02",name:"Face pull con banda o polea",dose:"3 × 12",how:"Tirar hacia la cara y terminar con rotación externa, manteniendo el control de la escápula.",note:"Ejecución real 02/11: banda negra."},
                 {n:"03",name:"Wall slide con banda",dose:"3 × 12",how:"Deslizar los brazos por la pared manteniendo rotación externa y tensión constante en la banda."},
                 {n:"04",name:"Y-T-W en banco boca abajo",dose:"3 × 8 por posición",how:"Boca abajo, elevar los brazos formando una Y, una T y una W. Activar trapecio medio e inferior con carga liviana."}
