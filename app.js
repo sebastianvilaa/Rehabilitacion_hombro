@@ -236,7 +236,7 @@
             <div><h2>Historial</h2><p>Se conserva cuando cambia una rutina.</p></div>
           </div>
           <div class="history-line">
-            <span class="week-chip">TO · ${toWeeks.length} semana registrada</span>
+            <span class="week-chip">TO · ${toWeeks.length} rutina registrada</span>
             <span class="week-chip">Kine · ${kWeeks.length} rutinas registradas</span>
           </div>
         </section>
