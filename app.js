@@ -128,13 +128,15 @@
     const mic = e.target.closest("[data-exercise-mic]");
     if(mic){
       const [modeId,week,ci,ei] = mic.dataset.exerciseMic.split("|");
-      openExerciseNote(modeId,Number(week),Number(ci),Number(ei),true);
+      openExerciseNote(modeId,Number(week),Number(ci),Number(ei));
       return;
     }
 
     const closeNote = e.target.closest("[data-note-close]");
     if(closeNote){
       const key = closeNote.dataset.noteClose;
+      const area = document.querySelector('[data-note-area="'+key+'"]');
+      area?.blur();
       document.querySelector('[data-note-panel="'+key+'"]')?.classList.add("hidden");
       return;
     }
@@ -367,7 +369,7 @@
     });
   }
 
-  function openExerciseNote(modeId, week, circuitIndex, exerciseIndex, startListening=false){
+  function openExerciseNote(modeId, week, circuitIndex, exerciseIndex){
     const key = exerciseNoteKey(modeId,week,circuitIndex,exerciseIndex);
     const panel = document.querySelector('[data-note-panel="'+key+'"]');
     const area = document.querySelector('[data-note-area="'+key+'"]');
@@ -375,60 +377,10 @@
     if(!panel || !area) return;
 
     panel.classList.remove("hidden");
-    area.focus();
-
-    if(startListening){
-      startSpeechForExercise(modeId,week,circuitIndex,exerciseIndex,area,status);
-    }
-  }
-
-  function startSpeechForExercise(modeId, week, circuitIndex, exerciseIndex, area, status){
-    const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    if(!Recognition){
-      if(status) status.textContent = "Usá el micrófono del teclado para dictar.";
-      area.focus();
-      return;
-    }
-
-    const recognition = new Recognition();
-    recognition.lang = "es-AR";
-    recognition.interimResults = true;
-    recognition.continuous = false;
-
-    const original = area.value.trim();
-    let finalText = "";
-
-    if(status) status.textContent = "Escuchando…";
-
-    recognition.onresult = event => {
-      let interim = "";
-      finalText = "";
-      for(let i=event.resultIndex;i<event.results.length;i++){
-        const piece = event.results[i][0].transcript;
-        if(event.results[i].isFinal) finalText += piece;
-        else interim += piece;
-      }
-      const joined = [original, finalText || interim].filter(Boolean).join(original ? " " : "");
-      area.value = joined;
-    };
-
-    recognition.onerror = () => {
-      if(status) status.textContent = "No pude escuchar. Podés usar el dictado del teclado.";
-      area.focus();
-    };
-
-    recognition.onend = () => {
-      const text = area.value.trim();
-      saveExerciseNote(modeId,week,circuitIndex,exerciseIndex,text);
-      if(status) status.textContent = text ? "Guardado" : "Vacío";
-    };
-
-    try {
-      recognition.start();
-    } catch(e) {
-      if(status) status.textContent = "Usá el micrófono del teclado para dictar.";
-      area.focus();
+    if(status){
+      status.textContent = area.value.trim()
+        ? "Guardado · tocá el campo para editar"
+        : "Tocá el campo para escribir o dictar";
     }
   }
 
@@ -689,7 +641,7 @@
               <div class="exercise-title-row">
                 <h3>${ex.name}</h3>
                 <button class="exercise-mic ${savedNote?"has-note":""}" type="button"
-                  aria-label="Dictar nota sobre ${ex.name}"
+                  aria-label="Abrir nota sobre ${ex.name}"
                   data-exercise-mic="${noteKey}">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <rect x="9" y="3" width="6" height="11" rx="3"></rect>
@@ -703,9 +655,9 @@
               <p><b>Cómo:</b> ${ex.how}</p>
               ${ex.note?`<div class="exercise-note"><b>Nota:</b> ${ex.note}</div>`:""}
               <div class="exercise-note-panel ${savedNote?"":"hidden"}" data-note-panel="${noteKey}">
-                <textarea class="exercise-note-area" data-note-area="${noteKey}" placeholder="Nota rápida sobre este ejercicio…">${savedNote}</textarea>
+                <textarea class="exercise-note-area" data-note-area="${noteKey}" placeholder="Escribí acá o usá el micrófono del teclado del iPhone…">${savedNote}</textarea>
                 <div class="exercise-note-controls">
-                  <span data-note-status="${noteKey}">${savedNote?"Guardado":"Listo para dictar"}</span>
+                  <span data-note-status="${noteKey}">${savedNote?"Guardado":"Tocá el campo para escribir o dictar"}</span>
                   <button type="button" data-note-close="${noteKey}">Cerrar</button>
                 </div>
               </div>
@@ -724,7 +676,11 @@
       if(!visible) return;
       buttons.forEach(b=>b.classList.toggle("active",b.dataset.scroll===visible.target.id));
       const activeBtn = buttons.find(b=>b.classList.contains("active"));
-      activeBtn?.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
+      const nav = document.getElementById("section-nav");
+      if(activeBtn && nav){
+        const targetLeft = activeBtn.offsetLeft - (nav.clientWidth - activeBtn.offsetWidth) / 2;
+        nav.scrollTo({left:Math.max(0,targetLeft),behavior:"smooth"});
+      }
     },{rootMargin:"-115px 0px -58% 0px",threshold:[0,.2,.5,.8]});
     ids.forEach(id=>{
       const el=document.getElementById(id);
