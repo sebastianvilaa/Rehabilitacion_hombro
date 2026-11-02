@@ -39,68 +39,70 @@ window.REHAB_DATA = {
       name: "Terapia ocupacional",
       currentWeek: 11,
       accent: "to",
-      summary: "Movilidad, rango y control. Complementa kinesio sin duplicar la carga.",
+      summary: "Movilidad, rotación y control. Complementa kinesio sin duplicar la carga pesada.",
       weeks: {
         "11": {
           week: 11,
+          routineNumber: 2,
           status: "vigente",
-          title: "Movilidad",
-          dateLabel: "Semana 11",
-          intro: "Ganar movilidad por arriba de la cabeza, rotación externa y control escapular, sin duplicar el trabajo de fuerza de kinesio.",
+          actualDate: "2026-11-02",
+          dateLabel: "02/11/2026",
+          postopLabel: "Postop ~12 semanas",
+          title: "Movilidad + rotación",
+          intro: "Rutina orientada a ganar movilidad por arriba de la cabeza, rotación interna y externa y control escapular, dejando la fuerza pesada para kinesio.",
           circuits: [
             {
-              id: "to-c1",
-              label: "Circuito 01",
-              title: "Movilidad y entrada en calor",
-              subtitle: "Soltar primero. Sin carga importante.",
+              id: "to-warmup",
+              label: "Entrada en calor",
+              title: "Movilidad torácica",
+              subtitle: "Opcional. Usarla para soltar antes de empezar si venís rígido.",
               exercises: [
-                {n:"01",name:"Movilidad general de brazos",dose:"10 repeticiones",how:"Mover los brazos en distintos planos, con recorrido amplio pero cómodo."},
-                {n:"02",name:"Rotación torácica parado",dose:"10 por lado",how:"Brazos extendidos / manos al centro y rotar el torso hacia ambos lados."},
-                {n:"03",name:"Ponerse y sacarse el sombrero",dose:"10 repeticiones",how:"Llevar la mano hacia la parte superior de la cabeza y volver. Movimiento fluido, sin compensar de más con el tronco."},
-                {n:"04",name:"Rotación externa con bastón",dose:"10 repeticiones",how:"Usar el bastón para abrir progresivamente el hombro. Buscar movilidad, no fuerza."}
+                {n:"01",name:"Rotación torácica parado",dose:"8–10 por lado",how:"Con brazos cómodos al frente, rotar suavemente el torso hacia ambos lados sin forzar el hombro.",note:"Queda como entrada en calor, no como parte principal de la rutina."}
+              ]
+            },
+            {
+              id: "to-c1",
+              label: "Bloque 01",
+              title: "Rotación externa y movilidad",
+              subtitle: "El foco principal de la rutina.",
+              exercises: [
+                {n:"01",name:"Rotación externa con bastón",dose:"3 × 30–45 s",how:"Trabajar la rotación externa con bastón en tres posiciones: 45°, 60° y 90° de abducción. Llegar al rango final cómodo y sostener sin dolor."},
+                {n:"02",name:"Estiramiento en marco de puerta",dose:"3 × 30 s",how:"Abrir suavemente el pecho y hombro en el marco para favorecer la rotación externa. Sin rebotes ni dolor."},
+                {n:"03",name:"Rotación externa isométrica con banda roja",dose:"3 × 10 s",how:"Hacer el gesto de rotación externa con banda roja y mantener la posición 10 segundos, sin ir y volver."},
+                {n:"04",name:"CARs de hombro · rotación circular",dose:"2 × 5",how:"Hacer una rotación circular completa y lenta de todo el hombro, recorriendo el mayor arco cómodo y evitando compensar con el tronco."}
               ]
             },
             {
               id: "to-c2",
-              label: "Circuito 02",
+              label: "Bloque 02",
               title: "Movilidad por arriba de la cabeza",
-              subtitle: "El bloque principal de la sesión.",
+              subtitle: "Buscar amplitud y control sin convertirlo en trabajo de fuerza.",
               exercises: [
                 {n:"01",name:"Bastón acostado + peso, llevando brazos arriba",dose:"10 repeticiones",how:"Acostado, llevar ambos brazos por encima de la cabeza con el bastón y la carga ya pautada.",note:"Recorrido amplio y controlado. No aumentar peso por tu cuenta."},
-                {n:"02",name:"Espaldar + banda liviana",dose:"8–10 repeticiones",how:"Subir progresivamente los brazos en el espaldar. La banda agrega algo de trabajo sin perder movilidad."},
+                {n:"02",name:"Espaldar + banda liviana",dose:"8–10 repeticiones",how:"Subir progresivamente los brazos en el espaldar. La banda agrega tensión suave sin perder movilidad."},
                 {n:"03",name:"Pelota contra la pared subiendo",dose:"8–10 repeticiones",how:"Hacer rodar la pelota por la pared hacia arriba y acompañar el recorrido hasta el máximo cómodo."},
-                {n:"04",name:"Wall slide frontal",dose:"8–10 repeticiones",how:"Deslizar los brazos recto hacia arriba y hacia abajo sobre la pared.",note:"Va al final porque te demanda bastante. No usarlo como primer ejercicio en frío."}
+                {n:"04",name:"Wall slide frontal",dose:"8–10 repeticiones",how:"Deslizar los brazos recto hacia arriba y hacia abajo sobre la pared, manteniendo control escapular.",note:"Mantenerlo después de haber entrado en calor; no usarlo como primer ejercicio."}
               ]
             },
             {
               id: "to-c3",
-              label: "Circuito 03",
-              title: "Rotación externa + escápula",
-              subtitle: "Movilidad, control y liberar la mecánica del hombro.",
+              label: "Bloque 03",
+              title: "Rotación + control escapular",
+              subtitle: "Controlar mejor el rango sin duplicar la fuerza pesada de kinesio.",
               exercises: [
-                {n:"01",name:"Rotación externa en 90/90",dose:"8–10 repeticiones",how:"Brazo a la altura del hombro y codo flexionado. Trabajar la rotación externa con resistencia mínima o asistida.",note:"En TO el objetivo es rango y control, no cansarte."},
-                {n:"02",name:"Plus de serrato en cuadrupedia",dose:"10–12 repeticiones",how:"Manos apoyadas, codos estirados. Empujar el piso y separar las escápulas sin doblar los brazos."},
-                {n:"03",name:"Face pull con banda liviana",dose:"10–12 repeticiones",how:"Banda a la altura de la cara. Llevar los codos atrás y afuera, controlando la escápula.",note:"Control de espalda y escápula; no hacerlo pesado como ejercicio de fuerza."},
-                {n:"04",name:"Rotación externa acostado de costado",dose:"10 repeticiones",how:"Acostado de costado, codo pegado al cuerpo y abrir el antebrazo hacia afuera con mancuerna.",note:"En TO, menos carga que en kinesio: priorizar recorrido y control."}
-              ]
-            },
-            {
-              id: "to-extra",
-              label: "Opcional",
-              title: "Descarga",
-              subtitle: "Solo si llegás muy trabado o terminás muy cargado.",
-              exercises: [
-                {n:"A",name:"Correíta / polea suave",dose:"10 repeticiones",how:"Usarla como ayuda para destrabar la elevación, no como parte fija si el espaldar ya sale bien."},
-                {n:"B",name:"Pelota sobre camilla",dose:"10–15 repeticiones",how:"Solo como descarga si el hombro está pesado o muy cargado."},
-                {n:"C",name:"Extensión / rotación torácica suave",dose:"8–10 por lado",how:"Mover el tórax suavemente para acompañar mejor el gesto del hombro y descargar espalda."}
+                {n:"01",name:"Rotación interna + externa en 90/90",dose:"8–10 de cada una",how:"Brazo a la altura del hombro y codo a 90°. Trabajar rotación interna y externa con resistencia mínima o asistida, priorizando rango y control.",note:"En TO el objetivo no es cansar el manguito sino moverlo bien."},
+                {n:"02",name:"Serrato parado con banda (punch)",dose:"10–12 repeticiones",how:"Con la banda anclada detrás, empujar el brazo hacia adelante alargando la escápula y volver con control, sin encoger el hombro.",note:"Se usa parado para no duplicar tanto el trabajo de apoyo de kinesio."},
+                {n:"03",name:"Rotación externa acostado de costado",dose:"10 repeticiones",how:"Acostado de costado, codo pegado al cuerpo, abrir el antebrazo hacia afuera y volver lento.",note:"En TO usar menos carga que en kinesio: prioridad al recorrido y, sobre todo, al control de la vuelta."},
+                {n:"04",name:"Y-T-W en banco boca abajo",dose:"2 × 8 por posición",how:"Boca abajo, elevar los brazos formando una Y, una T y una W. Usar carga mínima o sin peso y concentrarse en el control de las escápulas.",note:"Es demandante: si la técnica se desarma por fatiga, cortar antes de agregar volumen."}
               ]
             }
           ],
           rules: [
             "Dolor siempre por debajo de 4/10.",
             "No forzar rotación externa ni hacer estiramientos bruscos.",
-            "Si perdés calidad de movimiento por fatiga, no hace falta completar otra vuelta.",
-            "TO complementa kinesio: movilidad y control antes que fuerza."
+            "TO prioriza movilidad, rotación y control; la fuerza pesada queda para kinesio.",
+            "Si la técnica se pierde por fatiga, bajar carga o terminar el ejercicio.",
+            "Si el dolor aumenta al día siguiente, reducir la carga en la próxima sesión."
           ]
         }
       }
