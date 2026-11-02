@@ -335,35 +335,35 @@ window.REHAB_DATA = {
             {
               id:"k5-c1",label:"Bloque 01",title:"Movilidad de rotación externa",subtitle:"Ganar rango de RE progresivamente y sin dolor.",
               exercises:[
-                {n:"01",name:"Rotación externa con bastón",dose:"3 × 30–45 s",how:"Trabajar RE en tres posiciones: 0°, 45° y 90° de abducción. Llegar al rango final cómodo y sostener sin dolor."},
+                {n:"01",name:"Rotación externa con bastón",dose:"3 × 30–45 s",how:"Trabajar la rotación externa con bastón en tres posiciones: 45°, 60° y 90° de abducción. Llegar al rango final cómodo y sostener sin dolor.",note:"Ejecución real 02/11: Wenchi indicó 45°, 60° y 90°."},
                 {n:"02",name:"Estiramiento en marco de puerta",dose:"3 × 30 s",how:"Abrir suavemente el pecho en el marco para ganar rotación externa, sin rebotes ni dolor."},
                 {n:"03",name:"Contracción–relajación en RE (PNF)",dose:"3 × 8–10 s",how:"Llegar al final cómodo de RE, hacer una contracción isométrica submáxima durante 8–10 segundos, relajar y avanzar suavemente un poco más."},
-                {n:"04",name:"CARs de hombro · foco RE",dose:"2 × 5",how:"Hacer rotaciones articulares lentas y controladas, enfatizando el arco de rotación externa."}
+                {n:"04",name:"CARs de hombro · foco RE",dose:"2 × 5",how:"Hacer una rotación circular completa y controlada de todo el hombro, recorriendo el mayor arco cómodo.",note:"Ejecución real 02/11: rotación circular de todo el hombro."}
               ]
             },
             {
               id:"k5-c2",label:"Bloque 02",title:"Fuerza de rotadores y manguito",subtitle:"Acercarse a los valores del lado sano sin llevar el manguito a máxima carga.",
               exercises:[
-                {n:"01",name:"RE en abducción 60°",dose:"3 × 10",how:"Con polea o banda, hacer RE con el brazo a 60° de abducción. Subir carga respecto de la fase anterior y controlar la vuelta lenta."},
-                {n:"02",name:"RI en abducción 60°",dose:"3 × 10",how:"En la misma posición a 60°, hacer RI con más carga y controlar también la vuelta."},
-                {n:"03",name:"Full can con mancuerna",dose:"3 × 10",how:"Elevar en plano escapular con el pulgar hacia arriba, usando más carga pero controlando todo el recorrido."},
-                {n:"04",name:"RE acostado de costado con mancuerna",dose:"3 × 12",how:"Codo pegado al cuerpo, abrir hacia afuera y bajar lento, con foco en la fase excéntrica."}
+                {n:"01",name:"RE en abducción 60°",dose:"3 × 10",how:"Con banda, hacer RE con el brazo a 60° de abducción y controlar la vuelta lenta.",note:"Ejecución real 02/11: banda roja."},
+                {n:"02",name:"RI en abducción 60°",dose:"3 × 10",how:"Con banda, hacer RI con el brazo a 60° de abducción y controlar también la vuelta.",note:"Ejecución real 02/11: banda roja."},
+                {n:"03",name:"Full can con mancuerna",dose:"3 × 10",how:"Elevar en plano escapular con el pulgar hacia arriba, controlando todo el recorrido.",note:"Ejecución real 02/11: 3 kg."},
+                {n:"04",name:"RE acostado de costado con mancuerna",dose:"3 × 12",how:"Codo pegado al cuerpo, abrir hacia afuera y bajar lento, con foco en la fase excéntrica.",note:"Ejecución real 02/11: 4 kg."}
               ]
             },
             {
               id:"k5-c3",label:"Bloque 03",title:"Fuerza: empuje y tracción",subtitle:"Cargas altas y controladas, con técnica estricta.",
               exercises:[
                 {n:"01",name:"Remo con mancuerna pesado",dose:"4 × 8",how:"Traccionar llevando el codo hacia atrás sin perder el control de la escápula.",note:"Última ejecución registrada: 12 kg."},
-                {n:"02",name:"Jalón dorsal con banda o polea",dose:"4 × 8",how:"Hacer una tracción vertical con más resistencia, manteniendo el recorrido controlado."},
-                {n:"03",name:"Press de hombro con mancuerna",dose:"4 × 8",how:"Progresar la carga y usar recorrido completo solo si el control lo permite y no aparece dolor."},
-                {n:"04",name:"Curl de bíceps / flexo-extensión de codo",dose:"3 × 10",how:"Subir progresivamente la carga del bíceps, manteniendo el movimiento controlado."}
+                {n:"02",name:"Jalón dorsal con banda o polea",dose:"4 × 8",how:"Hacer una tracción vertical controlada, sin encoger el hombro.",note:"Ejecución real 02/11: banda negra."},
+                {n:"03",name:"Press de hombro con mancuerna",dose:"4 × 8",how:"Hacer el press con recorrido controlado y sin dolor.",note:"Ejecución real 02/11: 2,5 kg en hombro derecho operado y 7,5 kg en hombro izquierdo sano."},
+                {n:"04",name:"Curl de bíceps / flexo-extensión de codo",dose:"3 × 10",how:"Flexo-extensión de codo controlada, sin balancear el cuerpo.",note:"Ejecución real 02/11: 10 kg."}
               ]
             },
             {
               id:"k5-c4",label:"Bloque 04",title:"Estabilidad escapular",subtitle:"Más demanda de escápula y serrato para sostener mejor la carga.",
               exercises:[
                 {n:"01",name:"Shoulder taps en plancha",dose:"3 × 10 por lado",how:"Desde rodillas o pies, tocar el hombro opuesto alternando sin dejar que roten las caderas."},
-                {n:"02",name:"Face pull con banda o polea",dose:"3 × 12",how:"Tirar hacia la cara y terminar con rotación externa, manteniendo el control de la escápula."},
+                {n:"02",name:"Face pull con banda o polea",dose:"3 × 12",how:"Tirar hacia la cara y terminar con rotación externa, manteniendo el control de la escápula.",note:"Ejecución real 02/11: banda negra."},
                 {n:"03",name:"Wall slide con banda",dose:"3 × 12",how:"Deslizar los brazos por la pared manteniendo rotación externa y tensión constante en la banda."},
                 {n:"04",name:"Y-T-W en banco boca abajo",dose:"3 × 8 por posición",how:"Boca abajo, elevar los brazos formando una Y, una T y una W. Activar trapecio medio e inferior con carga liviana."}
               ]
