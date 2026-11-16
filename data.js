@@ -39,7 +39,7 @@ window.REHAB_DATA = {
       name: "Terapia ocupacional",
       currentWeek: 11,
       accent: "to",
-      summary: "Movilidad, rotación y control. Complementa kinesio sin duplicar la carga pesada.",
+      summary: "Movilidad, rotación, control escapular y core. Complementa kinesio y reparte la carga del manguito.",
       weeks: {
         "11": {
           week: 11,
@@ -47,61 +47,72 @@ window.REHAB_DATA = {
           status: "vigente",
           actualDate: "2026-11-02",
           dateLabel: "02/11/2026",
-          postopLabel: "Postop ~12 semanas",
-          title: "Movilidad + rotación",
-          intro: "Rutina orientada a ganar movilidad por arriba de la cabeza, rotación interna y externa y control escapular, dejando la fuerza pesada para kinesio.",
+          postopLabel: "Postop ~13 semanas",
+          title: "Movilidad + rotación + control",
+          intro: "Rutina de martes/jueves orientada a movilidad, rotación y control. Absorbe parte del trabajo escapular y de rotación externa para descargar los días de kinesio pesada.",
           circuits: [
             {
               id: "to-warmup",
               label: "Entrada en calor",
               title: "Movilidad torácica",
-              subtitle: "Opcional. Usarla para soltar antes de empezar si venís rígido.",
+              subtitle: "Opcional. Usarla si venís rígido antes de arrancar.",
               exercises: [
-                {n:"01",name:"Rotación torácica parado",dose:"8–10 por lado",how:"Con brazos cómodos al frente, rotar suavemente el torso hacia ambos lados sin forzar el hombro.",note:"Queda como entrada en calor, no como parte principal de la rutina."}
+                {n:"01",name:"Rotación torácica parado",dose:"8–10 por lado",how:"Con brazos cómodos al frente, rotar suavemente el torso hacia ambos lados sin forzar el hombro.",note:"Entrada en calor opcional."}
               ]
             },
             {
               id: "to-c1",
               label: "Bloque 01",
               title: "Rotación externa y movilidad",
-              subtitle: "El foco principal de la rutina.",
+              subtitle: "Ganar rango y preparar el hombro sin fatigar.",
               exercises: [
                 {n:"01",name:"Rotación externa con bastón",dose:"3 × 30–45 s",how:"Trabajar la rotación externa con bastón en tres posiciones: 45°, 60° y 90° de abducción. Llegar al rango final cómodo y sostener sin dolor."},
                 {n:"02",name:"Estiramiento en marco de puerta",dose:"3 × 30 s",how:"Abrir suavemente el pecho y hombro en el marco para favorecer la rotación externa. Sin rebotes ni dolor."},
                 {n:"03",name:"Rotación externa isométrica con banda roja",dose:"3 × 10 s",how:"Hacer el gesto de rotación externa con banda roja y mantener la posición 10 segundos, sin ir y volver."},
-                {n:"04",name:"CARs de hombro · rotación circular",dose:"2 × 5",how:"Hacer una rotación circular completa y lenta de todo el hombro, recorriendo el mayor arco cómodo y evitando compensar con el tronco."}
+                {n:"04",name:"CARs de hombro · rotación circular",dose:"2 × 5",how:"Hacer círculos completos y lentos con el hombro, recorriendo el mayor arco cómodo y evitando compensar con el tronco."}
               ]
             },
             {
               id: "to-c2",
               label: "Bloque 02",
               title: "Movilidad por arriba de la cabeza",
-              subtitle: "Buscar amplitud y control sin convertirlo en trabajo de fuerza.",
+              subtitle: "Amplitud y control, sin convertirlo en trabajo pesado.",
               exercises: [
                 {n:"01",name:"Bastón acostado + peso, llevando brazos arriba",dose:"10 repeticiones",how:"Acostado, llevar ambos brazos por encima de la cabeza con el bastón y la carga ya pautada.",note:"Recorrido amplio y controlado. No aumentar peso por tu cuenta."},
                 {n:"02",name:"Espaldar + banda liviana",dose:"8–10 repeticiones",how:"Subir progresivamente los brazos en el espaldar. La banda agrega tensión suave sin perder movilidad."},
                 {n:"03",name:"Pelota contra la pared subiendo",dose:"8–10 repeticiones",how:"Hacer rodar la pelota por la pared hacia arriba y acompañar el recorrido hasta el máximo cómodo."},
-                {n:"04",name:"Wall slide frontal",dose:"8–10 repeticiones",how:"Deslizar los brazos recto hacia arriba y hacia abajo sobre la pared, manteniendo control escapular.",note:"Mantenerlo después de haber entrado en calor; no usarlo como primer ejercicio."}
+                {n:"04",name:"Wall slide frontal",dose:"8–10 repeticiones",how:"Deslizar los brazos recto hacia arriba y hacia abajo sobre la pared, manteniendo control escapular.",note:"No usarlo como primer ejercicio en frío."}
               ]
             },
             {
               id: "to-c3",
               label: "Bloque 03",
-              title: "Rotación + control escapular",
-              subtitle: "Controlar mejor el rango sin duplicar la fuerza pesada de kinesio.",
+              title: "Rotadores + control escapular",
+              subtitle: "Trabajo técnico que sale de kinesio para repartir mejor la fatiga.",
               exercises: [
-                {n:"01",name:"Rotación interna + externa en 90/90",dose:"8–10 de cada una",how:"Brazo a la altura del hombro y codo a 90°. Trabajar rotación interna y externa con resistencia mínima o asistida, priorizando rango y control.",note:"En TO el objetivo no es cansar el manguito sino moverlo bien."},
-                {n:"02",name:"Serrato parado con banda (punch)",dose:"10–12 repeticiones",how:"Con la banda anclada detrás, empujar el brazo hacia adelante alargando la escápula y volver con control, sin encoger el hombro.",note:"Se usa parado para no duplicar tanto el trabajo de apoyo de kinesio."},
-                {n:"03",name:"Rotación externa acostado de costado",dose:"10 repeticiones",how:"Acostado de costado, codo pegado al cuerpo, abrir el antebrazo hacia afuera y volver lento.",note:"En TO usar menos carga que en kinesio: prioridad al recorrido y, sobre todo, al control de la vuelta."},
-                {n:"04",name:"Y-T-W en banco boca abajo",dose:"2 × 8 por posición",how:"Boca abajo, elevar los brazos formando una Y, una T y una W. Usar carga mínima o sin peso y concentrarse en el control de las escápulas.",note:"Es demandante: si la técnica se desarma por fatiga, cortar antes de agregar volumen."}
+                {n:"01",name:"Rotación interna + externa en 90/90",dose:"8–10 de cada una",how:"Brazo a la altura del hombro y codo a 90°. Trabajar rotación interna y externa con resistencia mínima o asistida, priorizando rango y control."},
+                {n:"02",name:"RE acostado de costado",dose:"3 × 12",how:"Acostado de costado, codo pegado al cuerpo, abrir el antebrazo hacia afuera y volver lento, con foco en la excéntrica.",note:"Movido desde kinesio para no acumular tanta fatiga del manguito el mismo día. Última carga real registrada en kinesio: 5 kg."},
+                {n:"03",name:"Remo bajo con banda (low row)",dose:"3 × 12",how:"Con banda anclada a la altura del pecho, llevar los codos hacia la cadera y los omóplatos abajo y al centro.",note:"Última ejecución registrada: banda negra."},
+                {n:"04",name:"Alcances con banda (serratus reach)",dose:"3 × 12",how:"Con banda anclada y un brazo, alcanzar al frente llevando el hombro hacia adelante en protracción, sin encogerlo.",note:"Última ejecución registrada: banda amarilla."}
+              ]
+            },
+            {
+              id: "to-c4",
+              label: "Bloque 04",
+              title: "Escápula + core",
+              subtitle: "Control escapular y zona media, sin repetir la fuerza pesada de kinesio.",
+              exercises: [
+                {n:"01",name:"Y-T-W en banco boca abajo",dose:"3 × 8 por posición",how:"Elevar los brazos formando una Y, una T y una W, activando trapecio medio e inferior con carga liviana."},
+                {n:"02",name:"Pallof press",dose:"3 × 10 por lado",how:"Con banda o polea, llevar las manos al frente sin permitir que el tronco rote.",note:"Podés hacerlo también en kinesio; no hace falta llevarlo al agotamiento."},
+                {n:"03",name:"Press-out de banda a dos brazos",dose:"3 × 12",how:"Con la banda a la altura del pecho, empujar al frente y volver sin arquear la espalda.",note:"Última ejecución registrada: banda negra, metido dentro de la banda y empujando como un press de pecho."}
               ]
             }
           ],
           rules: [
             "Dolor siempre por debajo de 4/10.",
             "No forzar rotación externa ni hacer estiramientos bruscos.",
-            "TO prioriza movilidad, rotación y control; la fuerza pesada queda para kinesio.",
-            "Si la técnica se pierde por fatiga, bajar carga o terminar el ejercicio.",
+            "TO reparte parte del trabajo de manguito y escápula para descargar los días de fuerza pesada.",
+            "Pallof puede repetirse con frecuencia si se mantiene técnico y sin fatiga excesiva.",
             "Si el dolor aumenta al día siguiente, reducir la carga en la próxima sesión."
           ]
         }
@@ -112,7 +123,7 @@ window.REHAB_DATA = {
       id: "kine",
       short: "Kine",
       name: "Kinesiología",
-      currentWeek: 6,
+      currentWeek: 7,
       accent: "kine",
       summary: "Fuerza pesada controlada, rotadores, empuje/tracción, escápula y zona media.",
       weeks: {
@@ -384,7 +395,7 @@ window.REHAB_DATA = {
         "6": {
           week: 6,
           routineNumber: 6,
-          status: "vigente",
+          status: "historico",
           actualDate: "2026-11-15",
           pdfDate: "2026-11-15",
           startDate: "2026-11-16",
@@ -445,6 +456,63 @@ window.REHAB_DATA = {
             "Fuerza pesada controlada sí; fallo muscular y cargas máximas sin control técnico, no.",
             "Todavía no gesto de pádel, lanzamientos, saque, remate ni pliometría.",
             "Landmine press y empuje horizontal están habilitados; progresar a overhead sin dolor.",
+            "Objetivo de fuerza: LSI 90%; re-test previsto entre semanas postoperatorias 16–18."
+          ]
+        },
+
+        "7": {
+          week: 7,
+          routineNumber: "6_B",
+          status: "vigente",
+          actualDate: "2026-11-16",
+          startDate: "2026-11-16",
+          dateLabel: "16/11/2026",
+          postopLabel: "Postop ~13 semanas",
+          title: "Rutina repartida · 4 bloques",
+          intro: "Versión 6_B: conserva la base de la Rutina 6 de Wenchi pero redistribuye parte del trabajo hacia Terapia Ocupacional para reducir la fatiga del manguito y acortar la sesión de kinesio.",
+          circuits: [
+            {
+              id:"k6b-c1",label:"Bloque 01",title:"Movilidad de rotación externa",subtitle:"Mantener el trabajo de movilidad antes de la fuerza.",
+              exercises:[
+                {n:"01",name:"Movilización en RE con bastón",dose:"3 × 30–45 s",how:"En 0°, 45° y 90° de abducción, llevar el hombro a rotación externa y sostener el rango final sin dolor."},
+                {n:"02",name:"Estiramiento de cápsula anterior (marco)",dose:"3 × 30 s",how:"En el marco de la puerta, abrir el pecho suavemente para ganar rotación externa."},
+                {n:"03",name:"Contracción–relajación en RE (PNF)",dose:"3 × 8–10 s",how:"En el rango final de RE, hacer una contracción isométrica submáxima 8–10 segundos, relajar y avanzar suavemente al nuevo rango.",note:"Pendiente confirmar con Wenchi la técnica exacta; no confundir con un simple isométrico de RE con banda."},
+                {n:"04",name:"CARs de hombro · foco RE",dose:"2 × 5",how:"Hacer círculos completos y controlados con el hombro, enfatizando el arco de rotación externa."}
+              ]
+            },
+            {
+              id:"k6b-c2",label:"Bloque 02",title:"Fuerza de rotadores",subtitle:"Menos volumen concentrado para no agotar el manguito.",
+              exercises:[
+                {n:"01",name:"RE en abducción 60°",dose:"3 × 10",how:"Con banda, hacer RE a 60° de abducción y controlar la vuelta.",note:"Última ejecución real: banda roja."},
+                {n:"02",name:"RI en abducción 60°",dose:"3 × 10",how:"En la misma posición, hacer RI y controlar especialmente la vuelta.",note:"Última ejecución real: banda roja."},
+                {n:"03",name:"Full can con mancuerna",dose:"3 × 10",how:"Pulgar arriba en plano escapular, controlando todo el recorrido.",note:"Última ejecución real: 4 kg."}
+              ]
+            },
+            {
+              id:"k6b-c3",label:"Bloque 03",title:"Fuerza: empuje y tracción",subtitle:"Mantener concentrada acá la fuerza pesada.",
+              exercises:[
+                {n:"01",name:"Remo a 1 brazo con mancuerna (pesado)",dose:"4 × 8",how:"Llevar el codo atrás sin perder el control de la escápula y mantener el tronco estable.",note:"Última ejecución real: 17,5 kg."},
+                {n:"02",name:"Jalón con banda o polea (dorsal)",dose:"4 × 8",how:"Tracción vertical controlada con resistencia alta.",note:"Última ejecución real: banda negra + banda amarilla."},
+                {n:"03",name:"Landmine press en plano escapular",dose:"4 × 6–8",how:"Empujar en plano escapular con técnica estricta, sin convertirlo todavía en overhead estricto.",note:"Última ejecución real: arrodillado, barra grande + disco de 5 kg."},
+                {n:"04",name:"Press de pecho con mancuerna",dose:"3 × 10",how:"Acostado en banco, rango controlado y sin bajar los codos más allá del plano del torso.",note:"Última ejecución real: 7,5 kg."}
+              ]
+            },
+            {
+              id:"k6b-c4",label:"Bloque 04",title:"Estabilidad + core + brazo",subtitle:"Cerrar la sesión con control, zona media y brazo.",
+              exercises:[
+                {n:"01",name:"Shoulder taps en plancha",dose:"3 × 10 por lado",how:"Tocar el hombro opuesto alternando sin dejar que roten las caderas.",note:"Mantener la variante real que venías usando."},
+                {n:"02",name:"Pallof press",dose:"3 × 10 por lado",how:"Llevar las manos al frente sin permitir que el tronco rote.",note:"Última ejecución real: banda negra. Puede repetirse también en TO sin llevarlo al agotamiento."},
+                {n:"03",name:"Curl martillo alternado con isométrico",dose:"3 × 8 por brazo",how:"Un brazo hace el curl mientras el otro sostiene a 90°. Alternar.",note:"Última ejecución real: 10 kg."},
+                {n:"04",name:"Carry con pesa rusa · variante real",dose:"3 × 20–30 m",how:"Caminar dando vueltas controladas con la pesa de un solo lado, manteniendo el tronco estable.",note:"Última ejecución real: pesa rusa de 4 kg, brazo elevado aproximadamente a 90° y pesa cerca/algo por encima de la cabeza."}
+              ]
+            }
+          ],
+          rules:[
+            "Rutina 6 original de Wenchi queda conservada en el historial.",
+            "La RE acostado, low row, serratus reach, Y-T-W y press-out se reparten hacia TO para reducir la duración y la fatiga de esta sesión.",
+            "Dolor siempre por debajo de 4/10; por encima de 5/10 durante el ejercicio, frenar.",
+            "Si el dolor aumenta al día siguiente, bajar la carga en la próxima sesión.",
+            "Todavía no gesto de pádel, lanzamientos, saque, remate ni pliometría.",
             "Objetivo de fuerza: LSI 90%; re-test previsto entre semanas postoperatorias 16–18."
           ]
         }
