@@ -112,9 +112,9 @@ window.REHAB_DATA = {
       id: "kine",
       short: "Kine",
       name: "Kinesiología",
-      currentWeek: 5,
+      currentWeek: 6,
       accent: "kine",
-      summary: "Fuerza progresiva, manguito, tracción, bíceps y control escapular.",
+      summary: "Fuerza pesada controlada, rotadores, empuje/tracción, escápula y zona media.",
       weeks: {
         "1": {
           week: 1,
@@ -325,7 +325,7 @@ window.REHAB_DATA = {
         "5": {
           week: 5,
           routineNumber: 5,
-          status: "vigente",
+          status: "historico",
           actualDate: "2026-11-01",
           pdfDate: "2026-10-29",
           startDate: "2026-11-02",
@@ -377,6 +377,74 @@ window.REHAB_DATA = {
             "Fuerza pesada controlada sí; fallo muscular y cargas máximas sin control técnico, no.",
             "Todavía no gesto de pádel, lanzamientos, saque, remate ni pliometría.",
             "RE en abducción progresa a 60° y más adelante hacia 90/90.",
+            "Objetivo de fuerza: LSI 90%; re-test previsto entre semanas postoperatorias 16–18."
+          ]
+        },
+
+        "6": {
+          week: 6,
+          routineNumber: 6,
+          status: "vigente",
+          actualDate: "2026-11-15",
+          pdfDate: "2026-11-15",
+          startDate: "2026-11-16",
+          dateLabel: "15/11/2026",
+          postopLabel: "Postop ~13 semanas",
+          title: "Fuerza pesada + zona media",
+          intro: "Nueva fase de fuerza pesada controlada. El objetivo sigue siendo cerrar el déficit de fuerza de rotadores antes de habilitar la transición al gesto de pádel, todavía sin gesto deportivo ni pliometría.",
+          circuits: [
+            {
+              id:"k6-c1",label:"Bloque 01",title:"Movilidad de rotación externa",subtitle:"Seguir ganando el rango de RE que todavía falta, sin dolor.",
+              exercises:[
+                {n:"01",name:"Movilización en RE con bastón",dose:"3 × 30–45 s",how:"En 0°, 45° y 90° de abducción, llevar el hombro a rotación externa y sostener el rango final sin dolor."},
+                {n:"02",name:"Estiramiento de cápsula anterior (marco)",dose:"3 × 30 s",how:"En el marco de la puerta, abrir el pecho suavemente para ganar rotación externa."},
+                {n:"03",name:"Contracción–relajación en RE (PNF)",dose:"3 × 8–10 s",how:"En el rango final de RE, sostener una contracción isométrica submáxima durante 8–10 segundos, relajar y avanzar suavemente al nuevo rango."},
+                {n:"04",name:"CARs de hombro · foco RE",dose:"2 × 5",how:"Hacer rotaciones articulares controladas enfatizando el arco de rotación externa."}
+              ]
+            },
+            {
+              id:"k6-c2",label:"Bloque 02",title:"Fuerza de rotadores y manguito",subtitle:"Acercarse a los valores del lado sano con carga controlada; el manguito no va a máxima.",
+              exercises:[
+                {n:"01",name:"RE en abducción 60°",dose:"3 × 10",how:"Con polea o banda, subir la carga respecto de la fase previa y controlar la excéntrica."},
+                {n:"02",name:"RI en abducción 60°",dose:"3 × 10",how:"En la misma posición, progresar la carga y controlar especialmente la vuelta."},
+                {n:"03",name:"Full can con mancuerna",dose:"3 × 10",how:"Pulgar arriba en plano escapular, con más carga y control de todo el recorrido."},
+                {n:"04",name:"RE en decúbito lateral con mancuerna",dose:"3 × 12",how:"Progresar la carga y hacer foco en una fase excéntrica lenta y controlada."}
+              ]
+            },
+            {
+              id:"k6-c3",label:"Bloque 03",title:"Fuerza: empuje y tracción",subtitle:"Cargas altas y controladas, con técnica estricta y dolor hasta 4/10.",
+              exercises:[
+                {n:"01",name:"Remo a 1 brazo con mancuerna (pesado)",dose:"4 × 8",how:"Trabajo unilateral con carga alta. Llevar el codo atrás sin perder el control de la escápula y mantener el tronco estable."},
+                {n:"02",name:"Jalón con banda o polea (dorsal)",dose:"4 × 8",how:"Usar más resistencia y hacer una tracción vertical controlada."},
+                {n:"03",name:"Landmine press en plano escapular",dose:"4 × 6–8",how:"Empujar en plano escapular. Todavía no hacer overhead estricto; progresar a press de pie cuando se tolere sin dolor."},
+                {n:"04",name:"Press de pecho con mancuerna o banda",dose:"3 × 10",how:"Usar rango controlado: no bajar los codos más allá del plano del torso. El empuje con banda es la opción más amable."}
+              ]
+            },
+            {
+              id:"k6-c4",label:"Bloque 04",title:"Estabilidad escapular",subtitle:"Más demanda para sostener mejor la carga y controlar la escápula.",
+              exercises:[
+                {n:"01",name:"Shoulder taps en plancha",dose:"3 × 10 por lado",how:"Desde rodillas o pies, tocar el hombro opuesto alternando sin dejar que roten las caderas. Foco en serrato y control escapular."},
+                {n:"02",name:"Remo bajo con banda (low row)",dose:"3 × 12",how:"Banda anclada a la altura del pecho. Traccionar llevando los codos hacia la cadera y los omóplatos abajo y al centro."},
+                {n:"03",name:"Alcances con banda (serratus reach)",dose:"3 × 12",how:"Con banda anclada y un brazo, alcanzar al frente llevando el hombro hacia adelante en protracción, sin encogerlo."},
+                {n:"04",name:"Y-T-W en banco boca abajo",dose:"3 × 8 por posición",how:"Elevar los brazos formando una Y, una T y una W, activando trapecio medio e inferior con carga liviana."}
+              ]
+            },
+            {
+              id:"k6-c5",label:"Bloque 05",title:"Zona media y brazo",subtitle:"Core anti-rotación y trabajo de brazo para integrar fuerza y proteger el hombro.",
+              exercises:[
+                {n:"01",name:"Pallof press",dose:"3 × 10 por lado",how:"De frente a la polea o banda, llevar las manos al frente sin permitir que el tronco rote. Progresar con paso lateral."},
+                {n:"02",name:"Press-out de banda a dos brazos",dose:"3 × 12",how:"Con la banda a la altura del pecho, empujar al frente y volver sin arquear la espalda. Trabajo de serrato y core anti-extensión."},
+                {n:"03",name:"Curl martillo alternado con isométrico",dose:"3 × 8 por brazo",how:"Con agarre neutro, un brazo hace el curl mientras el otro sostiene un isométrico a 90°. Alternar."},
+                {n:"04",name:"Suitcase carry",dose:"3 × 20–30 m",how:"Caminar sosteniendo una mancuerna de un solo lado sin inclinar el tronco. Trabajo de anti-inclinación lateral y zona media."}
+              ]
+            }
+          ],
+          rules:[
+            "Dolor siempre por debajo de 4/10; por encima de 5/10 durante el ejercicio, frenar.",
+            "Si el dolor aumenta al día siguiente, bajar la carga en la próxima sesión.",
+            "Fuerza pesada controlada sí; fallo muscular y cargas máximas sin control técnico, no.",
+            "Todavía no gesto de pádel, lanzamientos, saque, remate ni pliometría.",
+            "Landmine press y empuje horizontal están habilitados; progresar a overhead sin dolor.",
             "Objetivo de fuerza: LSI 90%; re-test previsto entre semanas postoperatorias 16–18."
           ]
         }
